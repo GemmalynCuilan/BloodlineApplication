@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "77833684704",
+    "firebase_url": "https://bloodlineapplication-default-rtdb.firebaseio.com",
+    "project_id": "bloodlineapplication",
+    "storage_bucket": "bloodlineapplication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77833684704:android:f697ded6874bf338997285",
+        "android_client_info": {
+          "package_name": "com.example.bloodlineapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77833684704-p3o6nd4rogjg770h9b0svs4r8n64lidu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloodlineapplication",
+            "certificate_hash": "2c1bf884d792cd6735530d7e9db40c60a730ca97"
+          }
+        },
+        {
+          "client_id": "77833684704-ucio12ovgdoasvggmoijpddkj5t0qsmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA-tEano_0_ORTHqb5jmG-8k_RrS1GVmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77833684704-ucio12ovgdoasvggmoijpddkj5t0qsmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
