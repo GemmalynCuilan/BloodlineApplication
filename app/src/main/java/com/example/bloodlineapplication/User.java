@@ -1,7 +1,7 @@
 package com.example.bloodlineapplication;
 
 public class User {
-    public String name, userAddress, emailAddress, pass, bloodDr, bgroup;
+    public String name, userAddress, emailAddress, pass,  bgroup, bloodDr;
 
     public User(){
 
@@ -11,8 +11,9 @@ public class User {
         this.userAddress = userAddress;
         this.emailAddress = emailAddress;
         this.pass = pass;
-        this.bloodDr = bloodDr;
         this.bgroup = bgroup;
+        this.bloodDr = bloodDr;
+
 
     }
 }

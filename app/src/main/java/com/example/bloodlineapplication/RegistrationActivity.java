@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private Spinner blood, bloodGroup;
+    private Spinner blood, bloodGroups;
     private EditText fullname, address, email, password;
     private Button signUpButton;
     private FirebaseAuth mAuth;
@@ -43,7 +43,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         address = (EditText) findViewById(R.id.address);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
-        bloodGroup = (Spinner) findViewById(R.id.bloodGroup);
+        bloodGroups = (Spinner) findViewById(R.id.bloodGroups);
         blood = (Spinner) findViewById(R.id.blood);
 
         mAuth = FirebaseAuth.getInstance();
@@ -77,8 +77,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String userAddress = address.getText().toString().trim();
         String emailAdd = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
-        String bgroup = bloodGroup.getSelectedItem().toString().trim();
-        String donRec = blood.getSelectedItem().toString().trim();
+        String bgroup = bloodGroups.getSelectedItem().toString().trim();
+        String bloodDr = blood.getSelectedItem().toString().trim();
 
         if(name.isEmpty()){
             fullname.setError("Full name is required");
@@ -110,10 +110,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             password.requestFocus();
         }
         if(bgroup.isEmpty()){
-            bloodGroup.requestFocus();
+            bloodGroups.requestFocus();
             return;
         }
-        if(donRec.isEmpty()){
+        if(bloodDr.isEmpty()){
             blood.requestFocus();
             return;
         }
@@ -122,7 +122,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
 
-                    User user = new User(name, userAddress, emailAdd,pass, bgroup, donRec);
+                    User user = new User(name, userAddress, emailAdd,pass, bgroup, bloodDr);
                     FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance()
                             .getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

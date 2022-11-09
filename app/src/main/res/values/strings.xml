@@ -17,6 +17,7 @@
         <item>Select the one applicable to you</item>
         <item>Blood Donor</item>
         <item>Blood Recipient</item>
+
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="google_map_key">AIzaSyCQp1VdUH8dsDvAzLofBA6Jte6YwjGzSJE</string>
