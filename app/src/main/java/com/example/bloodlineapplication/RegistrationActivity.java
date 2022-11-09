@@ -5,71 +5,52 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Process;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
 
-public class RegistrationActivity extends AppCompatActivity {
-   CheckBox bloodDonor, bloodRecipient;
-   Spinner blood, bloodGroup;
+    private Spinner blood, bloodGroup;
+    private EditText fullname, address, email, password;
+    private Button signUpButton;
+    private FirebaseAuth mAuth;
 
-
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://bloodlineapplication-default-rtdb.firebaseio.com/");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        final EditText username = findViewById(R.id.username);
-        final EditText address = findViewById(R.id.address);
-        final EditText email = findViewById(R.id.email);
-        final EditText password = findViewById(R.id.password);
-        final Spinner bloodGroup = findViewById(R.id.bloodGroup);
-        final Spinner blood = findViewById(R.id.blood);
+        fullname = (EditText) findViewById(R.id.fullname);
+        address = (EditText) findViewById(R.id.address);
+        email = (EditText) findViewById(R.id.email);
+        password = (EditText) findViewById(R.id.password);
+        bloodGroup = (Spinner) findViewById(R.id.bloodGroup);
+        blood = (Spinner) findViewById(R.id.blood);
 
+        mAuth = FirebaseAuth.getInstance();
 
-        final Button signUpButton = findViewById(R.id.signUpButton);
-        final TextView backButton = findViewById(R.id.backButton);
-
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String name = username.getText().toString();
-                final String userAddress = address.getText().toString();
-                final String emailAddress = email.getText().toString();
-                final String pass = password.getText().toString();
-                final String bgroup = bloodGroup.getSelectedItem().toString();
-                final String bloodDR = blood.getSelectedItem().toString();
-
-
-                if(name.isEmpty() || userAddress.isEmpty() || emailAddress.isEmpty()|| pass.isEmpty()|| bgroup.isEmpty()){
-                    Toast.makeText(RegistrationActivity.this, "Please fill fields", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    databaseReference.child("users").child(name).child("address").setValue(userAddress);
-                    databaseReference.child("users").child(name).child("email").setValue(emailAddress);
-                    databaseReference.child("users").child(name).child("bloodGroup").setValue(bgroup);
-                    databaseReference.child("users").child(name).child("password").setValue(pass);
-                    databaseReference.child("users").child(name).child("blood").setValue(bloodDR);
-
-                    Toast.makeText(RegistrationActivity.this,"User registered Succesfully", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-
-            }
-        });
-
-
+        signUpButton = (Button) findViewById(R.id.signUpButton);
+        signUpButton.setOnClickListener(this);
+        TextView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,4 +59,87 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.signUpButton:
+                signUpButton();
+                break;
+            case R.id.backButton:
+                startActivity(new Intent(this, LoginActivity.class));
+
+        }
+    }
+
+    private void signUpButton() {
+        String name = fullname.getText().toString().trim();
+        String userAddress = address.getText().toString().trim();
+        String emailAdd = email.getText().toString().trim();
+        String pass = password.getText().toString().trim();
+        String bgroup = bloodGroup.getSelectedItem().toString().trim();
+        String donRec = blood.getSelectedItem().toString().trim();
+
+        if(name.isEmpty()){
+            fullname.setError("Full name is required");
+            fullname.requestFocus();
+            return;
+        }
+        if(userAddress.isEmpty()){
+            address.setError("Address is required");
+            address.requestFocus();
+            return;
+        }
+        if(emailAdd.isEmpty()){
+            email.setError("Email Address is required");
+            email.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()){
+            email.setError("Please provide valid email");
+            email.requestFocus();
+            return;
+        }
+        if(pass.isEmpty()){
+            password.setError("Password is required");
+            password.requestFocus();
+            return;
+        }
+        if(pass.length()<6){
+            password.setError("Min password length should be 6 characters");
+            password.requestFocus();
+        }
+        if(bgroup.isEmpty()){
+            bloodGroup.requestFocus();
+            return;
+        }
+        if(donRec.isEmpty()){
+            blood.requestFocus();
+            return;
+        }
+        mAuth.createUserWithEmailAndPassword(emailAdd,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+
+                    User user = new User(name, userAddress, emailAdd,pass, bgroup, donRec);
+                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance()
+                            .getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(RegistrationActivity.this,"User has been registered sucessfully!",Toast.LENGTH_LONG).show();
+                                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                                finish();
+
+                            }else{
+                                Toast.makeText(RegistrationActivity.this, "Failed to register!Try again!", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    }
 }
+

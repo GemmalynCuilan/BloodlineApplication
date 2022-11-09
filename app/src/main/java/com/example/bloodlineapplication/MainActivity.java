@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         register = (Button) findViewById(R.id.register);
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
                 openlogin();
             }
         });
-
-
 
     }
 

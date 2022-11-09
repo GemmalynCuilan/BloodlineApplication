@@ -45,9 +45,6 @@ public class HomeActivity extends AppCompatActivity {
     public void ClickFindBloodDonor(View view){
         redirectActivity(this, FindBloodDonor.class);
     }
-    public void ClickFindCenter(View view){
-        redirectActivity(this, FindCenter.class);
-    }
 
     public void ClickProfile(View view){
         //redirect act to profile

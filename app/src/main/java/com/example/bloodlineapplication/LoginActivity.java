@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,10 +23,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReferenceFromUrl("https://bloodlineapplication-default-rtdb.firebaseio.com/");
-    private ProgressDialog progress;
+    private TextView backButton, loginButton;
+    private EditText email, password;
+
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,36 +35,67 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
-        final EditText username = findViewById(R.id.username);
-        final EditText password = findViewById(R.id.password);
-        final Button loginButton = findViewById(R.id.loginButton);
-        final TextView backButton = findViewById(R.id.backButton);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(this);
+
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.backButton:
+                startActivity(new Intent(this, RegistrationActivity.class));
+                break;
+            case R.id.loginButton:
+                userLogin();
+                break;
+    }
+}
+
+    private void userLogin() {
+        String emailAdd = email.getText().toString().trim();
+        String  pass = password.getText().toString().trim();
+        if(emailAdd.isEmpty()){
+            email.setError("Email is required!");
+            email.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()){
+            email.setError("Please enter a valid email!");
+            email.requestFocus();
+            return;
+        }
+        if(pass.isEmpty()){
+            password.setError("Password id required!");
+            password.requestFocus();
+        }
+        if(pass.length() < 6){
+            password.setError("Min password length is 6 characters!");
+            password.requestFocus();
+            return;
+        }
+
+        mAuth.signInWithEmailAndPassword(emailAdd, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onClick(View view) {
-                final String name = username.getText().toString();
-                final String pass  = password.getText().toString();
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
 
-                if(name.isEmpty() || pass.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Please fill all fields!", Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    Toast.makeText(LoginActivity.this,"Successfully Logged in", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                    Toast.makeText(LoginActivity.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, DashboardActivity.class));
                     finish();
 
-
+                }else{
+                    Toast.makeText(LoginActivity.this, "Failed to login!Please check your credentials", Toast.LENGTH_LONG).show();
 
                 }
-            }
-        });
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegistrationActivity.class));
             }
         });
     }
-}
+    }

@@ -34,9 +34,6 @@ public class FindBloodDonor extends AppCompatActivity {
     public void ClickProfile(View view){
         redirectActivity(this, Profile.class);
     }
-    public void ClickFindCenter(View view){
-        redirectActivity(this, FindCenter.class);
-    }
     public void ClickLogout(View view){
         HomeActivity.logout(this);
     }

@@ -3,10 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.bloodlineapplication">
 
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <users-permission android:name = "android:permission.Internet"/>
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -17,12 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodlineApplication"
         tools:targetApi="31">
-
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key"/>
         <activity
-            android:name=".FindCenter"
-            android:exported="false" />
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/Theme.BloodlineApplication.NoActionBar" />
         <activity
             android:name=".Profile"
             android:exported="false" />
