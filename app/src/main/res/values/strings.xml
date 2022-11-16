@@ -32,5 +32,23 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_FindBloodDonor">FindBloodDonor</string>
+    <string name="menu_bloodrequest">bloodrequest</string>
+    <string name="menu_BloodRequest">bloodrequest</string>
+    <string name="nav_header_BloodLine">BloodLine</string>
+    <string name="menu_Bloodrequest">Blood Request</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_Profile">profile</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_logout">Logout</string>
+    <string name="mobile">mobile</string>
+    <string name="BloodGroup">BloodGroup</string>
+    <string name="Name">Name</string>
+    <string name="Post">Post</string>
+    <string name="email">email</string>
+    <string name="BloodGroups">Blood Group</string>
+    <string name="Blood">D or R</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
 
 </resources>

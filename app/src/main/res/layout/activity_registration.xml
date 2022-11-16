@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegistrationActivity">
+    tools:context=".activities.RegistrationActivity">
 
 
     <TextView
@@ -123,7 +123,8 @@
             android:layout_marginBottom="8dp"
             android:text="Enter"
             android:textColor="#FFFFFF"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:background="#F44336"/>
 
 
     </LinearLayout>

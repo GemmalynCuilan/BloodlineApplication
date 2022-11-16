@@ -11,8 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <include
-            layout="@layout/toolbar"/>
 
         <ScrollView
             android:layout_width="match_parent"
@@ -130,10 +128,6 @@
                     android:drawablePadding="10dp"
                     android:padding="10dp" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/logout"/>
             </LinearLayout>
 
 
@@ -149,6 +143,11 @@
 
         <include layout="@layout/nav_drawer" />
     </RelativeLayout>
+
+
+
+
+
 
 </androidx.drawerlayout.widget.DrawerLayout>
 

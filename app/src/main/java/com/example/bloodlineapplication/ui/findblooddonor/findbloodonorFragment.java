@@ -1,4 +1,4 @@
-package com.example.bloodlineapplication.ui.home;
+package com.example.bloodlineapplication.ui.findblooddonor;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,23 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.databinding.FragmentHomeBinding;
+import com.example.bloodlineapplication.databinding.FragmentFindblooddonorBinding;
+import com.example.bloodlineapplication.databinding.FragmentFindblooddonorBinding;
 
-public class HomeFragment extends Fragment {
+public class findbloodonorFragment extends Fragment {
 
-    private View view;
-    public HomeFragment() {
-        // Required empty public constructor
-    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+      ;
+        View root = inflater.inflate(R.layout.fragment_findblooddonor, container, false);
 
-        view = inflater.inflate(R.layout.fragment_home, container, false);
-        getActivity().setTitle("Home");
 
-        return view;
+        return root;
     }
-
 
 }
