@@ -1,130 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     tools:context=".activities.MyProfile">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F44336">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="649dp"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="249dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp"
-                    android:text="MY PROFILE INFORMATION"
-                    android:textSize="15dp" />
+                <ImageButton
+                    android:id="@+id/arrowback_profile"
+                    android:layout_width="70dp"
+                    android:layout_height="50dp"
+                    android:background="#F44336"
+                    android:src="@drawable/ic_backspace"
+                    tools:ignore="SpeakableTextPresentCheck" />
 
-                <TextView
-                    android:id="@+id/fullnametitle"
-                    android:layout_width="173dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_person"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp"
-                    android:text="Full name"
-                    android:textSize="15dp" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/fullname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp" />
+        </androidx.appcompat.widget.Toolbar>
 
-                <TextView
-                    android:id="@+id/addresstitle"
-                    android:layout_width="182dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_home"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp"
-                    android:text="Address"
-                    android:textSize="15dp" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="649dp"
+        android:layout_below="@+id/app_bar_settings"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="33dp"
+        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/emailtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp"
-                    android:text="Email Address"
-                    android:textSize="15dp" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="249dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:padding="8dp"
+            android:text="MY PROFILE INFORMATION"
+            android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp" />
+        <TextView
+            android:id="@+id/fullnametitle"
+            android:layout_width="173dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_person"
+            android:drawablePadding="10dp"
+            android:padding="8dp"
+            android:text="Full name"
+            android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/bloodGrouptitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp"
-                    android:text="Blood Donor or Blood receipt"
-                    android:textSize="15dp" />
+        <TextView
+            android:id="@+id/fullname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:padding="8dp" />
 
-                <TextView
-                    android:id="@+id/bloodGroups"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp" />
+        <TextView
+            android:id="@+id/addresstitle"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_home"
+            android:drawablePadding="10dp"
+            android:padding="8dp"
+            android:text="Address"
+            android:textSize="15dp" />
 
-                <TextView
-                    android:id="@+id/bloodtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawableLeft="@drawable/ic_bloodtype"
-                    android:drawablePadding="10dp"
-                    android:padding="8dp"
-                    android:text="Blood Group"
-                    android:textSize="15dp" />
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:padding="8dp" />
 
-                <TextView
-                    android:id="@+id/blood"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp" />
+        <TextView
+            android:id="@+id/emailtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="10dp"
+            android:padding="8dp"
+            android:text="Email Address"
+            android:textSize="15dp" />
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/logout"/>
-            </LinearLayout>
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/bloodGrouptitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_user"
+            android:drawablePadding="10dp"
+            android:padding="8dp"
+            android:text="Blood Donor or Blood receipt"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/bloodGroups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:padding="10dp" />
+
+        <TextView
+            android:id="@+id/bloodtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawableLeft="@drawable/ic_bloodtype"
+            android:drawablePadding="10dp"
+            android:padding="8dp"
+            android:text="Blood Group"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/blood"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:drawablePadding="10dp"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

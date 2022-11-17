@@ -8,6 +8,7 @@ import android.view.Menu;
 
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.databinding.ActivityDashboardBinding;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -86,7 +87,14 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         if (id == R.id.nav_banks) {
             Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
             startActivity(intent);
-        }
+
+    }/*else if (id == R.id.menuLogout) {
+        Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Auth.signOut();
+        startActivity(intent);
+        finish();
+    }*/
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

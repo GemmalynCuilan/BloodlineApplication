@@ -35,6 +35,7 @@ public class MyProfile extends AppCompatActivity {
     private DatabaseReference reference;
 
     private String userID;
+    private ImageButton arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,14 @@ public class MyProfile extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(MyProfile.this, MainActivity.class));
+            }
+        });
+        ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
+        arrowBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyProfile.this, DashboardActivity.class);
+                startActivity(intent);
             }
         });
 

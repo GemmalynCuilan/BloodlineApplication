@@ -23,12 +23,17 @@
             android:title="Find Blood Donor"/>
         <item
             android:id="@+id/nav_banks"
-            android:icon="@drawable/ic_search"
-            android:title="Find Blood Banks"/>
-        <item
-            android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_backspace"
-            android:title="@string/menu_logout"/>
+            android:icon="@drawable/ic_location"
+            android:title="Nearby Blood Banks"/>
+
+        <item android:title="Settings">
+            <menu>
+                <item
+                    android:id="@+id/menuLogout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Logout"/>
+            </menu>
+        </item>
 
     </group>
 </menu>

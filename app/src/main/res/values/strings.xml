@@ -50,5 +50,6 @@
     <string name="BloodGroups">Blood Group</string>
     <string name="Blood">D or R</string>
     <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="google_api_keys">AIzaSyDdmiXxOX3nqFRxhKf2GThZCjQvRzIiFm4</string>
 
 </resources>
