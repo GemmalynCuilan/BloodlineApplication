@@ -61,8 +61,6 @@ public class PostActivity extends AppCompatActivity {
 
         btnpost = findViewById(R.id.postbtn);
 
-
-
         FirebaseUser cur_user = mAuth.getInstance().getCurrentUser();
 
         if(cur_user == null)

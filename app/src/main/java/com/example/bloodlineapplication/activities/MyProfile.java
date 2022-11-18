@@ -23,7 +23,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 public class MyProfile extends AppCompatActivity {
 
     DrawerLayout drawerLayout;
@@ -66,6 +65,7 @@ public class MyProfile extends AppCompatActivity {
         final TextView fullnametitle = (TextView) findViewById(R.id.fullname);
         final TextView addresstitle = (TextView) findViewById(R.id.address);
         final TextView emailtitle = (TextView) findViewById(R.id.email);
+        final TextView phoneNumbertitle = (TextView) findViewById(R.id.phoneNumber);
         final TextView bloodGrouptitle = (TextView)findViewById(R.id.bloodGroups);
         final TextView bloodtitle = (TextView) findViewById(R.id.blood);
 
@@ -76,7 +76,8 @@ public class MyProfile extends AppCompatActivity {
                 if (user != null) {
                     String fullname = user.name;
                     String userAddress = user.userAddress;
-                    String emailAddress = user.emailAddress;
+                    String emailAddress = user.emailAdd;
+                    String phoneNumber = user.phone;
                     String pass = user.pass;
                     String bgroup = user.bgroup;
                     String bloodDr = user.bloodDr;
@@ -84,6 +85,7 @@ public class MyProfile extends AppCompatActivity {
                     fullnametitle.setText(fullname);
                     addresstitle.setText(userAddress);
                     emailtitle.setText(emailAddress);
+                    phoneNumbertitle.setText(phoneNumber);
                     bloodGrouptitle.setText(bgroup);
                     bloodtitle.setText(bloodDr);
                 }
@@ -98,3 +100,4 @@ public class MyProfile extends AppCompatActivity {
     }
 
 }
+

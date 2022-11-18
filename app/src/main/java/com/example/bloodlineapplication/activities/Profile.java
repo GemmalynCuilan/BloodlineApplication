@@ -64,7 +64,7 @@ public class Profile extends AppCompatActivity{
                 if (user != null) {
                     String fullname = user.name;
                     String userAddress = user.userAddress;
-                    String emailAddress = user.emailAddress;
+                    String emailAddress = user.emailAdd;
                     String pass = user.pass;
                     String bgroup = user.bgroup;
                     String bloodDr = user.bloodDr;

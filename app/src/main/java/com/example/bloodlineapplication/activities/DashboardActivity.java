@@ -8,7 +8,9 @@ import android.view.Menu;
 
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.databinding.ActivityDashboardBinding;
+import com.example.bloodlineapplication.fragment.HomeView;
 import com.google.android.gms.auth.api.Auth;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -43,6 +45,14 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("BloodLine");
         setSupportActionBar(toolbar);
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(DashboardActivity.this, PostActivity.class));
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -81,7 +91,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
             startActivity(intent);
         }
         if (id == R.id.nav_bdonor) {
-            Intent intent = new Intent(DashboardActivity.this, PostActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, FindDonorActivity.class);
             startActivity(intent);
         }
         if (id == R.id.nav_banks) {
