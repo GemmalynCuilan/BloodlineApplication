@@ -40,14 +40,7 @@ public class MyProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        logout = (Button) findViewById(R.id.logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MyProfile.this, MainActivity.class));
-            }
-        });
+
         ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,14 +5,27 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.adapters.UserAdapter;
 import com.example.bloodlineapplication.databinding.ActivityDashboardBinding;
 import com.example.bloodlineapplication.fragment.HomeView;
+import com.example.bloodlineapplication.update.User;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -27,12 +40,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashboardActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-    private RecyclerView myList;
-    private  RecyclerView recyclerView;
+    private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+
+    private FirebaseUser User;
+    private FirebaseAuth Auth;
+    private RecyclerView myList;
+
+    private Button logout;
+
+
+    private FirebaseUser user;
+    private DatabaseReference reference;
+
+    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +89,37 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View headerView = navigationView.getHeaderView(0);
+        TextView name = (TextView) headerView.findViewById(R.id.profilename);
+        TextView bloodDr = (TextView) headerView.findViewById(R.id.profileblood);
+        TextView bgroup = (TextView) headerView.findViewById(R.id.profilebloodtype);
+        Auth = FirebaseAuth.getInstance();
+        User = Auth.getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("users").child(User.getUid());
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+                assert user != null;
+                name.setText(user.getName());
+                name.setAllCaps(true);
+                bloodDr.setText(user.getBloodDr());
+                bloodDr.setAllCaps(false);
+                bgroup.setText(user.getBgroup());
+                bgroup.setAllCaps(true);
 
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(DashboardActivity.this,"Error", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
     }
 
 
@@ -98,7 +154,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
             Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
             startActivity(intent);
 
-    }/*else if (id == R.id.menuLogout) {
+        }/*else if (id == R.id.menuLogout) {
         Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Auth.signOut();

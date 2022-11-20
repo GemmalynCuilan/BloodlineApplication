@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.location.Address;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -16,7 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.update.UserData;
+import com.example.bloodlineapplication.model.UserData;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

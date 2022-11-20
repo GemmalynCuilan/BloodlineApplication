@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:77833684704:android:7a975fb426f7654c997285",
+        "android_client_info": {
+          "package_name": "com.example.agritechturaapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77833684704-ucio12ovgdoasvggmoijpddkj5t0qsmh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA-tEano_0_ORTHqb5jmG-8k_RrS1GVmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77833684704-ucio12ovgdoasvggmoijpddkj5t0qsmh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:77833684704:android:f697ded6874bf338997285",
         "android_client_info": {
           "package_name": "com.example.bloodlineapplication"

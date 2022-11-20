@@ -1,8 +1,8 @@
-package com.example.bloodlineapplication.update;
+package com.example.bloodlineapplication.model;
 public class UserData {
 
     private String Name, Email, Address;
-    private int Blood, BloodGroups;
+    private int Blood, BloodGroups,  Number;
 
     public UserData() {
 
@@ -36,5 +36,11 @@ public class UserData {
     }
     public void setBlood(int blood){
         this.Blood = blood;
+    }
+    public int getNumber(){
+        return Number;
+    }
+    public void setNumber(int number){
+        this.Number = number;
     }
 }
