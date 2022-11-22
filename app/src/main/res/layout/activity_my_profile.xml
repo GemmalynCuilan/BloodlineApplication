@@ -35,169 +35,88 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="683dp"
-        android:layout_below="@+id/app_bar_settings"
-        android:layout_marginTop="-2dp"
-        android:background="#F4511E">
 
-        <RelativeLayout
-            android:layout_width="386dp"
-            android:layout_height="652dp"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="250dp"
+        android:layout_height="200dp"
+        android:layout_below="@id/app_bar_settings"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="User Name"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fullname"
             android:layout_centerHorizontal="true"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="25dp"
-            android:background="@drawable/bottom_background">
+            android:layout_marginTop="20dp"
+            android:text="Baguio City, Philippines"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold" />
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/app_bar_settings"
-                android:layout_marginTop="2dp">
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/address"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="useremail@gmail.com"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/phoneNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="+639 123 4567 890"
+            android:textColor="@color/black"
+            android:textSize="19sp"
+            android:textStyle="bold" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/app_bar_settings"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginTop="-1dp"
-                    android:layout_marginBottom="39dp"
-                    android:orientation="vertical">
+    <TextView
+        android:id="@+id/blood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phoneNumber"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Blood Donor"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/bloodGroups"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/blood"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="A+"
+        android:textColor="@color/black"
+        android:textSize="19sp"
+        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/title"
-                        android:layout_width="249dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="MY PROFILE INFORMATION"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/fullnametitle"
-                        android:layout_width="173dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/ic_person"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="Full name"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/fullname"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:id="@+id/addresstitle"
-                        android:layout_width="182dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/ic_home"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="Address"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/address"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:id="@+id/emailtitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/ic_email"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="Email Address"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/email"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:id="@+id/phoneNumbertitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/ic_phone"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="Phone Number"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/phoneNumber"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp" />
-
-                    <TextView
-                        android:id="@+id/bloodGrouptitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/ic_user"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="Blood Type"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/bloodGroups"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp" />
-
-                    <TextView
-                        android:id="@+id/bloodtitle"
-                        android:layout_width="395dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawableLeft="@drawable/ic_bloodtype"
-                        android:drawablePadding="10dp"
-                        android:padding="8dp"
-                        android:text="Donor or Recipient"
-                        android:textSize="15dp" />
-
-                    <TextView
-                        android:id="@+id/blood"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:drawablePadding="10dp"
-                        android:padding="10dp" />
-
-                </LinearLayout>
-            </ScrollView>
-        </RelativeLayout>
     </RelativeLayout>
 
 
-</RelativeLayout>
+

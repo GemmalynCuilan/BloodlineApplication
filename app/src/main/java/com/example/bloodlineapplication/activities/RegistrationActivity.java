@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.update.User;
+import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,12 +27,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
+public class RegistrationActivity extends AppCompatActivity{
 
     private Spinner  bloodGroups, blood;
     private EditText fullname, address, email, password, phoneNumber;
     private Button signUpButton;
     private FirebaseAuth mAuth;
+    private ProgressDialog loadBar;
+    private FirebaseUser User;
+    private DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +52,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         blood = (Spinner) findViewById(R.id.blood);
 
         mAuth = FirebaseAuth.getInstance();
+        loadBar = new ProgressDialog(this);
 
-        signUpButton = (Button) findViewById(R.id.signUpButton);
-        signUpButton.setOnClickListener(this);
+
         TextView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,21 +63,17 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 finish();
             }
         });
+
+        signUpButton = (Button) findViewById(R.id.signUpButton);
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PerformAuthentication();
+            }
+        });
     }
 
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()){
-            case R.id.signUpButton:
-                signUpButton();
-                break;
-            case R.id.backButton:
-                startActivity(new Intent(this, LoginActivity.class));
-
-        }
-    }
-
-    private void signUpButton() {
+    private void PerformAuthentication() {
         String name = fullname.getText().toString().trim();
         String userAddress = address.getText().toString().trim();
         String emailAdd = email.getText().toString().trim();
@@ -81,70 +82,76 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         String bgroup = bloodGroups.getSelectedItem().toString().trim();
         String bloodDr = blood.getSelectedItem().toString().trim();
 
-        if(name.isEmpty()){
-            fullname.setError("Full name is required");
-            fullname.requestFocus();
-            return;
+        if (emailAdd.isEmpty()) {
+            email.setError("Enter correct E-mail!");
+            Toast.makeText(this, "Please input correct E-Mail...", Toast.LENGTH_SHORT).show();
+        } else if (pass.isEmpty()) {
+            password.setError("Enter Password!");
+            Toast.makeText(this, "Please input your password...", Toast.LENGTH_SHORT).show();
+        } else if (phone.isEmpty()) {
+            phoneNumber.setError("Enter your 11 digit phone number");
+            Toast.makeText(this, "Please enter your phone number...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(userAddress)) {
+            address.setError("Enter your address");
+            Toast.makeText(this, "Please write your address...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(name)) {
+            fullname.setError("Enter your full name");
+            Toast.makeText(this, "Please write your full name...", Toast.LENGTH_SHORT).show();
+        } else {
+            register(emailAdd, pass, phone, userAddress, name, bgroup, bloodDr);
         }
-        if(userAddress.isEmpty()){
-            address.setError("Address is required");
-            address.requestFocus();
-            return;
-        }
-        if(emailAdd.isEmpty()){
-            email.setError("Email Address is required");
-            email.requestFocus();
-            return;
-        }
-        if(phone.isEmpty()){
-            phoneNumber.setError("Phone number is required");
-            phoneNumber.requestFocus();
-            return;
-        }
-        if(!Patterns.EMAIL_ADDRESS.matcher(emailAdd).matches()){
-            email.setError("Please provide valid email");
-            email.requestFocus();
-            return;
-        }
-        if(pass.isEmpty()){
-            password.setError("Password is required");
-            password.requestFocus();
-            return;
-        }
-        if(pass.length()<6){
-            password.setError("Min password length should be 6 characters");
-            password.requestFocus();
-        }
-        if(bgroup.isEmpty()){
-            bloodGroups.requestFocus();
-            return;
-        }
-        if(bloodDr.isEmpty()){
-            blood.requestFocus();
-            return;
-        }
+
+    }
+
+    private void register(String emailAdd, String pass, String phone, String userAddress, String name, String bgroup, String bloodDr) {
+        loadBar.setTitle("Creating Account");
+        loadBar.setMessage("Please wait!");
+        loadBar.setCanceledOnTouchOutside(false);
+        loadBar.show();
+
         mAuth.createUserWithEmailAndPassword(emailAdd,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-
-                    User user = new User(name, userAddress, emailAdd, phone ,bgroup, bloodDr);
-                    FirebaseDatabase.getInstance().getReference("users").child(FirebaseAuth.getInstance()
-                            .getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    User = mAuth.getCurrentUser();
+                    assert User != null;
+                    String userId = User.getUid();
+                    databaseReference = FirebaseDatabase.getInstance().getReference("users").child(userId);
+                    HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put("userId", userId);
+                    hashMap.put("email", emailAdd);
+                    hashMap.put("password", pass);
+                    hashMap.put("phoneNumber", phone);
+                    hashMap.put("houseAddress", userAddress);
+                    hashMap.put("fullname", name);
+                    hashMap.put("bloodGroups", bgroup);
+                    hashMap.put("blood", bloodDr);
+                    hashMap.put("profileImage", "default");
+                    //hashMap.put("status", "offline");
+                    databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
-                            if(task.isSuccessful()){
-                                Toast.makeText(RegistrationActivity.this,"User has been registered sucessfully!",Toast.LENGTH_LONG).show();
-                                startActivity(new Intent(RegistrationActivity.this, LoginActivity.class));
+                            if (task.isSuccessful()) {
+                                loadBar.dismiss();
+                                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                Toast.makeText(RegistrationActivity.this, "User has been registered sucessfully!", Toast.LENGTH_SHORT).show();
                                 finish();
-
-                            }else{
-                                Toast.makeText(RegistrationActivity.this, "Failed to register!Try again!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                loadBar.dismiss();
+                                Toast.makeText(RegistrationActivity.this, " " + task.getException(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
+                }else{
+                    loadBar.dismiss();
+                    Toast.makeText(RegistrationActivity.this, "Account Created Successfull!", Toast.LENGTH_SHORT).show();
                 }
-            }
+                }
+
         });
     }
-}
+
+
+    }
+

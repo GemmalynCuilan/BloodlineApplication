@@ -13,18 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.update.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     private Context context;
-    private List<User> userList;
-    public UserAdapter(Context context, List<User> userList){
+    private ArrayList<User> userList;
+
+    public UserAdapter(Context context, ArrayList<User> userList){
         this.context = context;
         this.userList = userList;
     }
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public UserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.user_layout, parent, false);
         return new ViewHolder(view);
@@ -32,16 +34,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        final User user = userList.get(position);
-        holder.name.setText(user.getName());
-        holder.userAddress.setText(user.getUserAddress());
-        holder.emailAdd.setText(user.getEmailAdd());
-        holder.bgroup.setText(user.getBgroup());
-        holder.bloodDr.setText(user.getBloodDr());
+       User user = userList.get(position);
+        holder.name.setText(user.getFullname());
+        holder.userAddress.setText(user.getHouseAddress());
+        holder.emailAdd.setText(user.getEmail());
+        holder.bgroup.setText(user.getBloodGroups());
+        holder.bloodDr.setText(user.getBlood());
+        holder.emailNow.setVisibility(View.GONE);
 
-        if(user.getBloodDr().equals("Blood Donor")){
-            holder.emailNow.setVisibility(View.GONE);
-        }
 
     }
 

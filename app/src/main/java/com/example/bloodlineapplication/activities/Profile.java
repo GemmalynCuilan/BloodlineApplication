@@ -62,12 +62,12 @@ public class Profile extends AppCompatActivity{
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue (User.class);
                 if (user != null) {
-                    String fullname = user.name;
-                    String userAddress = user.userAddress;
-                    String emailAddress = user.emailAdd;
-                    String pass = user.pass;
-                    String bgroup = user.bgroup;
-                    String bloodDr = user.bloodDr;
+                    String fullname = user.fullname;
+                    String userAddress = user.houseAddress;
+                    String emailAddress = user.email;
+                    String pass = user.password;
+                    String bgroup = user.bloodGroups;
+                    String bloodDr = user.blood;
 
                     fullnametitle.setText(fullname);
                     addresstitle.setText(userAddress);

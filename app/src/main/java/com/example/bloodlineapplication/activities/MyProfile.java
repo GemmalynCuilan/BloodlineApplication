@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.update.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,23 +24,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MyProfile extends AppCompatActivity {
 
-    DrawerLayout drawerLayout;
+    private FirebaseUser User;
+    private FirebaseAuth Auth;
+    private DatabaseReference databaseReference;
 
-    private Button logout;
+    private TextView name, phone, address, email, bloodDr, bgroup;
+    private CircleImageView profileImage;
 
-
-    private FirebaseUser user;
-    private DatabaseReference reference;
-
-    private String userID;
-    private ImageButton arrowBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
-
 
         ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -50,47 +50,49 @@ public class MyProfile extends AppCompatActivity {
             }
         });
 
+        name =  (TextView) findViewById(R.id.fullname);
+        address =  (TextView) findViewById(R.id.address);
+        email =  (TextView) findViewById(R.id.email);
+        phone =  (TextView) findViewById(R.id.phoneNumber);
+        bgroup = (TextView) findViewById(R.id.bloodGroups);
+        bloodDr = (TextView) findViewById(R.id.blood);
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("users");
-        userID = user.getUid();
 
-        final TextView fullnametitle = (TextView) findViewById(R.id.fullname);
-        final TextView addresstitle = (TextView) findViewById(R.id.address);
-        final TextView emailtitle = (TextView) findViewById(R.id.email);
-        final TextView phoneNumbertitle = (TextView) findViewById(R.id.phoneNumber);
-        final TextView bloodGrouptitle = (TextView)findViewById(R.id.bloodGroups);
-        final TextView bloodtitle = (TextView) findViewById(R.id.blood);
+        profileImage = (CircleImageView) findViewById(R.id.profileImage);
 
-        reference.child(userID).addValueEventListener(new ValueEventListener() {
+        Auth = FirebaseAuth.getInstance();
+        User = Auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(User.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue (User.class);
-                if (user != null) {
-                    String fullname = user.name;
-                    String userAddress = user.userAddress;
-                    String emailAddress = user.emailAdd;
-                    String phoneNumber = user.phone;
-                    String pass = user.pass;
-                    String bgroup = user.bgroup;
-                    String bloodDr = user.bloodDr;
+                User user = snapshot.getValue(User.class);
+                assert user != null;
+                bloodDr.setText(user.getBlood());
+                bloodDr.setAllCaps(true);
+                name.setText(user.getFullname());
+                phone.setText(user.getPhoneNumber());
+                address.setText(user.getHouseAddress());
+                email.setText(User.getEmail());
+                bgroup.setText(user.getBloodGroups());
+                bgroup.setAllCaps(true);
 
-                    fullnametitle.setText(fullname);
-                    addresstitle.setText(userAddress);
-                    emailtitle.setText(emailAddress);
-                    phoneNumbertitle.setText(phoneNumber);
-                    bloodGrouptitle.setText(bgroup);
-                    bloodtitle.setText(bloodDr);
+
+                if(user.getProfileImage().equals("default")){
+                    profileImage.setImageResource(R.drawable.logo);
+                }else{
+                    Glide.with(getApplicationContext()).load(user.getProfileImage()).into(profileImage);
+
                 }
 
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MyProfile.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MyProfile.this,"Error, please report this bug!", Toast.LENGTH_SHORT).show();
             }
         });
 
+
     }
-
 }
-

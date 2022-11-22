@@ -1,19 +1,29 @@
 package com.example.bloodlineapplication.activities;
 
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.adapters.UserAdapter;
-import com.example.bloodlineapplication.databinding.ActivityDashboardBinding;
+import com.example.bloodlineapplication.adapters.UserViewHolder;
 import com.example.bloodlineapplication.fragment.HomeView;
 import com.example.bloodlineapplication.update.User;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,10 +34,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -40,8 +51,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DashboardActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -54,11 +68,10 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
 
     private Button logout;
 
-
+    private String userId = "";
     private FirebaseUser user;
-    private DatabaseReference reference;
+    private DatabaseReference databaseReference;
 
-    private String userID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,14 +85,6 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         toolbar.setTitle("BloodLine");
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(DashboardActivity.this, PostActivity.class));
-            }
-        });
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -91,27 +96,29 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
 
         View headerView = navigationView.getHeaderView(0);
         TextView name = (TextView) headerView.findViewById(R.id.profilename);
-        TextView bloodDr = (TextView) headerView.findViewById(R.id.profileblood);
-        TextView bgroup = (TextView) headerView.findViewById(R.id.profilebloodtype);
+        CircleImageView profileImageView = headerView.findViewById(R.id.profileImage);
+
         Auth = FirebaseAuth.getInstance();
         User = Auth.getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("users").child(User.getUid());
-        reference.addValueEventListener(new ValueEventListener() {
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(User.getUid());
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(User.class);
                 assert user != null;
-                name.setText(user.getName());
+                name.setText(user.fullname);
                 name.setAllCaps(true);
-                bloodDr.setText(user.getBloodDr());
-                bloodDr.setAllCaps(false);
-                bgroup.setText(user.getBgroup());
-                bgroup.setAllCaps(true);
-
+                if(user.getProfileImage().equals("default")){
+                    profileImageView.setImageResource(R.drawable.logo);
+                }else{
+                    Glide.with(getApplicationContext()).load(user.getProfileImage()).into(profileImageView);
+                }
             }
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(DashboardActivity.this,"Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DashboardActivity.this, "Error", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -120,6 +127,8 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+
     }
 
 
@@ -154,18 +163,51 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
             Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
             startActivity(intent);
 
-        }/*else if (id == R.id.menuLogout) {
+        }else if (id == R.id.menuLogout) {
         Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+            Toast.makeText(DashboardActivity.this,"User has been Logout sucessfully!",Toast.LENGTH_LONG).show();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Auth.signOut();
         startActivity(intent);
         finish();
-    }*/
+    }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
 
 
     }
+/*
+    @Override
+    protected void onStart() {
+        super.onStart();
+        reference = FirebaseDatabase.getInstance().getReference().child("users");
+        FirebaseRecyclerOptions<User> options = new FirebaseRecyclerOptions.Builder<User>()
+                .setQuery(reference.orderByChild("name").equalTo("Blood Donor"), User.class).build();
+        FirebaseRecyclerAdapter<User, UserViewHolder> adapter =
+                new FirebaseRecyclerAdapter<User, UserViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull UserViewHolder holder, int position, @NonNull User user) {
+                        holder.fullname.setText(user.getName());
+                        holder.address.setText(user.getUserAddress());
+                        holder.email.setText(user.getEmailAdd());
+                        holder.bloodGroups.setText(user.getBgroup());
+                        holder.blood.setText(user.getBloodDr());
+                    }
+                    @NonNull
+                    @Override
+                    public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.user_layout, parent, false);
+                        UserViewHolder userHolder = new UserViewHolder(view);
+                        return userHolder;
+                    }
+                };
 
-}
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+*/
+    }
