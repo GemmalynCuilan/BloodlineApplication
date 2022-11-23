@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -18,13 +20,16 @@
         android:theme="@style/Theme.BloodlineApplication"
         tools:targetApi="31">
         <activity
-            android:name=".FindBloodDonor"
+            android:name=".ChangePassword"
             android:exported="false" />
         <activity
-            android:name=".Logout"
+            android:name=".profile.ChangeProfile"
             android:exported="false" />
         <activity
             android:name=".activities.FindDonorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Logout"
             android:exported="false" />
 
         <meta-data
@@ -54,10 +59,10 @@
             android:label="@string/title_activity_dashboard"
             android:theme="@style/Theme.BloodlineApplication.NoActionBar" />
         <activity
-            android:name=".activities.Profile"
+            android:name=".profile.Profile"
             android:exported="false" />
         <activity
-            android:name=".activities.MyProfile"
+            android:name=".profile.MyProfile"
             android:exported="false" />
         <activity
             android:name=".activities.HomeActivity"

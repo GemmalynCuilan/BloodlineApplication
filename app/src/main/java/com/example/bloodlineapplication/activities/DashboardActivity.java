@@ -1,32 +1,20 @@
 package com.example.bloodlineapplication.activities;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.adapters.UserAdapter;
-import com.example.bloodlineapplication.adapters.UserViewHolder;
-import com.example.bloodlineapplication.fragment.HomeView;
+import com.example.bloodlineapplication.profile.ChangePassword;
+import com.example.bloodlineapplication.profile.ChangeProfile;
+import com.example.bloodlineapplication.profile.MyProfile;
+import com.example.bloodlineapplication.profile.Profile;
 import com.example.bloodlineapplication.update.User;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,25 +26,16 @@ import com.google.firebase.database.ValueEventListener;
 
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import de.hdodenhof.circleimageview.CircleImageView;
-
 public class DashboardActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
@@ -65,7 +44,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
     private FirebaseUser User;
     private FirebaseAuth Auth;
     private RecyclerView myList;
-
+    private TextView menu_profile, menu_search, menu_view, menu_banks;
     private Button logout;
 
     private String userId = "";
@@ -77,9 +56,40 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-
-        myList = (RecyclerView) findViewById(R.id.recycler_menu);
-        myList.setLayoutManager(new LinearLayoutManager(DashboardActivity.this));
+        menu_profile = (TextView) findViewById(R.id.menu_profile);
+        menu_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
+                startActivity(intent);
+            }
+        });
+        menu_search = (TextView) findViewById(R.id.menu_search);
+        menu_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, FindDonorActivity.class);
+                startActivity(intent);
+            }
+        });
+        menu_view = (TextView) findViewById(R.id.menu_view);
+        menu_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, FindDonorActivity.class);
+                startActivity(intent);
+            }
+        });
+        menu_banks = (TextView) findViewById(R.id.menu_banks);
+        menu_banks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+        //myList = (RecyclerView) findViewById(R.id.recycler_menu);
+        //myList.setLayoutManager(new LinearLayoutManager(DashboardActivity.this));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("BloodLine");
@@ -123,12 +133,6 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
             }
         });
 
-        recyclerView = findViewById(R.id.recycler_menu);
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-
     }
 
 
@@ -151,26 +155,26 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
             startActivity(intent);
         }
 
-        if (id == R.id.nav_recipient) {
+        if (id == R.id.nav_changeProfile) {
             Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
             startActivity(intent);
         }
-        if (id == R.id.nav_bdonor) {
+        if (id == R.id.nav_changePassword) {
             Intent intent = new Intent(DashboardActivity.this, FindDonorActivity.class);
             startActivity(intent);
         }
-        if (id == R.id.nav_banks) {
+        if (id == R.id.nav_messages) {
             Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
             startActivity(intent);
 
         }else if (id == R.id.menuLogout) {
-        Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
             Toast.makeText(DashboardActivity.this,"User has been Logout sucessfully!",Toast.LENGTH_LONG).show();
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        Auth.signOut();
-        startActivity(intent);
-        finish();
-    }
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            Auth.signOut();
+            startActivity(intent);
+            finish();
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -202,7 +206,6 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
                         return userHolder;
                     }
                 };
-
         recyclerView.setAdapter(adapter);
         adapter.startListening();
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -210,4 +213,4 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 */
-    }
+}

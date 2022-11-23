@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
-    tools:context=".profile.MyProfile"
+    tools:context=".profile.ChangeProfile"
     android:background="@drawable/background">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_settings"
@@ -36,43 +36,46 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImage"
-        android:layout_width="250dp"
-        android:layout_height="200dp"
+
+    <RelativeLayout
+        android:layout_width="337dp"
+        android:layout_height="517dp"
         android:layout_below="@+id/app_bar_settings"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="84dp"
-        android:src="@drawable/logo" />
-
-    <RelativeLayout
-        android:layout_width="387dp"
-        android:layout_height="313dp"
-        android:layout_below="@+id/profileImage"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="65dp"
+        android:layout_marginEnd="27dp"
         android:background="@drawable/background_btn">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileEdit"
+            android:layout_width="250dp"
+            android:layout_height="200dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="84dp"
+            android:src="@drawable/logo" />
 
-        <TextView
-            android:id="@+id/fullname"
+        <EditText
+            android:id="@+id/fullnameEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/profileEdit"
             android:layout_centerHorizontal="true"
             android:text="User Name"
             android:textColor="@color/black"
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/address"
+        <EditText
+            android:id="@+id/addressEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/fullname"
+            android:layout_below="@id/fullnameEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="Baguio City, Philippines"
@@ -80,11 +83,11 @@
             android:textSize="19sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/email"
+        <EditText
+            android:id="@+id/emailEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/address"
+            android:layout_below="@id/addressEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="useremail@gmail.com"
@@ -92,11 +95,11 @@
             android:textSize="19sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/phoneNumber"
+        <EditText
+            android:id="@+id/phoneNumberEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/email"
+            android:layout_below="@id/emailEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="+639 123 4567 890"
@@ -104,11 +107,11 @@
             android:textSize="19sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/blood"
+        <EditText
+            android:id="@+id/bloodEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/phoneNumber"
+            android:layout_below="@id/phoneNumberEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="Blood Donor"
@@ -116,17 +119,27 @@
             android:textSize="19sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/bloodGroups"
+        <EditText
+            android:id="@+id/bloodGroupsEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/blood"
+            android:layout_below="@id/bloodEdit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="A+"
             android:textColor="@color/black"
             android:textSize="19sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/profileEditSaveBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_below="@id/bloodGroupsEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/top_background"
+            android:text="UPDATE" />
 
     </RelativeLayout>
 

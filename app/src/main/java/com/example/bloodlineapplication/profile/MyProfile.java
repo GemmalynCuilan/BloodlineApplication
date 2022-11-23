@@ -1,21 +1,18 @@
-package com.example.bloodlineapplication.activities;
-
-import static com.example.bloodlineapplication.activities.HomeActivity.redirectActivity;
+package com.example.bloodlineapplication.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.activities.DashboardActivity;
 import com.example.bloodlineapplication.update.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

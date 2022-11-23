@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.profile.MyProfile;
+import com.example.bloodlineapplication.profile.Profile;
 
 public class HomeActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.bloodlineapplication.activities;
+package com.example.bloodlineapplication.profile;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.activities.HomeActivity;
+import com.example.bloodlineapplication.activities.MainActivity;
 import com.example.bloodlineapplication.update.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
