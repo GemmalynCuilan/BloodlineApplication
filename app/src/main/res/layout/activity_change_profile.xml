@@ -2,11 +2,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
-    tools:context=".profile.ChangeProfile"
-    android:background="@drawable/background">
+    android:background="@drawable/top_background"
+    tools:context=".profile.ChangeProfile">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_settings"
         android:layout_width="match_parent"
@@ -38,8 +39,8 @@
 
 
     <RelativeLayout
-        android:layout_width="337dp"
-        android:layout_height="517dp"
+        android:layout_width="wrap_content"
+        android:layout_height="564dp"
         android:layout_below="@+id/app_bar_settings"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -55,93 +56,128 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="77dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginEnd="84dp"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginEnd="73dp"
             android:src="@drawable/logo" />
 
-        <EditText
-            android:id="@+id/fullnameEdit"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/change_profile_btn"
+            android:layout_width="157dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/profileEdit"
-            android:layout_centerHorizontal="true"
-            android:text="User Name"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="103dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="77dp"
+            android:text="Change Profile"
+            android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/addressEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fullnameEdit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="Baguio City, Philippines"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+        <ScrollView
+            android:layout_width="289dp"
+            android:layout_height="295dp"
+            android:layout_below="@+id/change_profile_btn"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="21dp">
 
-        <EditText
-            android:id="@+id/emailEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/addressEdit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="useremail@gmail.com"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/phoneNumberEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/emailEdit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="+639 123 4567 890"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/fullnameEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profileEdit"
+                    android:layout_centerHorizontal="true"
+                    android:text="User Name"
+                    android:textColor="@color/black"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/bloodEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/phoneNumberEdit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="Blood Donor"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/addressEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/fullnameEdit"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="Baguio City, Philippines"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/bloodGroupsEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bloodEdit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="A+"
-            android:textColor="@color/black"
-            android:textSize="19sp"
-            android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/emailEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/addressEdit"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="useremail@gmail.com"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/profileEditSaveBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_below="@id/bloodGroupsEdit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/top_background"
-            android:text="UPDATE" />
+                <EditText
+                    android:id="@+id/phoneNumberEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/emailEdit"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="+639 123 4567 890"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/bloodEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/phoneNumberEdit"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="Blood Donor"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/bloodGroupsEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/bloodEdit"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:text="A+"
+                    android:textColor="@color/black"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </ScrollView>
+
 
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/saveButton"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="92dp"
+        android:layout_marginEnd="109dp"
+        android:layout_marginBottom="58dp"
+        android:background="@drawable/background_btn"
+        android:text="Update profile" />
 
 </RelativeLayout>
 

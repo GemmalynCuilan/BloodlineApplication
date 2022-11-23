@@ -44,19 +44,20 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="77dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="84dp"
         android:src="@drawable/logo" />
 
     <RelativeLayout
-        android:layout_width="387dp"
-        android:layout_height="313dp"
+        android:layout_width="wrap_content"
+        android:layout_height="370dp"
         android:layout_below="@+id/profileImage"
+        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="11dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/background_btn">
-
 
         <TextView
             android:id="@+id/fullname"

@@ -26,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyProfile extends AppCompatActivity {
 
-    private FirebaseUser User;
+    private FirebaseUser Users;
     private FirebaseAuth Auth;
     private DatabaseReference databaseReference;
 
@@ -58,8 +58,8 @@ public class MyProfile extends AppCompatActivity {
         profileImage = (CircleImageView) findViewById(R.id.profileImage);
 
         Auth = FirebaseAuth.getInstance();
-        User = Auth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(User.getUid());
+        Users = Auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(Users.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -70,7 +70,7 @@ public class MyProfile extends AppCompatActivity {
                 name.setText(user.getFullname());
                 phone.setText(user.getPhoneNumber());
                 address.setText(user.getHouseAddress());
-                email.setText(User.getEmail());
+                email.setText(Users.getEmail());
                 bgroup.setText(user.getBloodGroups());
                 bgroup.setAllCaps(true);
 

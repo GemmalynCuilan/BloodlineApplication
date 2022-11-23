@@ -9,9 +9,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -31,9 +33,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.HashMap;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -43,7 +47,7 @@ public class ChangeProfile extends AppCompatActivity {
     FirebaseUser Users;
     private ImageButton settingsArrowBack;
     private CircleImageView profileImage;
-    private EditText address, phoneNumber, fullname;
+    private EditText address, phoneNumber, fullname, emailAdd;
     private Button updateBTN;
     private Button changeProfilePic;
     private DatabaseReference databaseReference;
@@ -74,11 +78,11 @@ public class ChangeProfile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 checker = "clicked";
-              //  CropImage.activity(imageUri).setAspectRatio(1, 1).start(ChangeProfile.this);
+                //CropImage.activity(imageUri).setAspectRatio(1, 1).start(ChangeProfile.this);
             }
         });
 
-        updateBTN = (Button) findViewById(R.id.profileEditSaveBTN);
+        updateBTN = (Button) findViewById(R.id.saveButton);
         updateBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +98,7 @@ public class ChangeProfile extends AppCompatActivity {
         fullname = (EditText) findViewById(R.id.fullnameEdit);
         address = (EditText) findViewById(R.id.addressEdit);
         phoneNumber = (EditText) findViewById(R.id.phoneNumberEdit);
+        emailAdd = (EditText) findViewById(R.id.emailEdit);
 
         Auth = FirebaseAuth.getInstance();
         Users = Auth.getCurrentUser();
@@ -107,6 +112,8 @@ public class ChangeProfile extends AppCompatActivity {
                 fullname.setText(user.getFullname());
                 phoneNumber.setText(user.getPhoneNumber());
                 address.setText(user.getHouseAddress());
+                emailAdd.setText(user.getEmail());
+
 
                 if (user.getProfileImage().equals("default")) {
                     profileImage.setImageResource(R.drawable.logo);
@@ -130,6 +137,7 @@ public class ChangeProfile extends AppCompatActivity {
         String name = fullname.getText().toString();
         String add = address.getText().toString();
         String phone = phoneNumber.getText().toString();
+        String emailAdds = emailAdd.getText().toString();
 
 
         if (TextUtils.isEmpty(name)) {
@@ -141,13 +149,16 @@ public class ChangeProfile extends AppCompatActivity {
         } else if (TextUtils.isEmpty(add)) {
             address.setError("Enter your address");
             Toast.makeText(ChangeProfile.this, "Please write your address...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(emailAdds)) {
+            emailAdd.setError("Enter your email address");
+            Toast.makeText(ChangeProfile.this, "Please write your email address...", Toast.LENGTH_SHORT).show();
         }else {
-            updateDataPic(name, add, phone);
+            updateDataPic(name, add, phone, emailAdds);
         }
 
     }
 
-    private void updateDataPic(String name, String add, String phone) {
+    private void updateDataPic(String name, String add, String phone, String emailAdds) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Updating Profile");
         progressDialog.setMessage("Please wait, while we are updating your account information");
@@ -181,6 +192,7 @@ public class ChangeProfile extends AppCompatActivity {
                         HashMap User = new HashMap();
                         User.put("fullname", name);
                         User.put("houseAddress", add);
+                        User.put("email", emailAdds);
                         User.put("phoneNumber", phone);
                         User.put("profileImage", myUrl);
                         ref.child(Users.getUid()).updateChildren(User);
@@ -206,6 +218,7 @@ public class ChangeProfile extends AppCompatActivity {
         String name = fullname.getText().toString();
         String add = address.getText().toString();
         String phone = phoneNumber.getText().toString();
+        String emailAdds = emailAdd.getText().toString();
 
 
         if (TextUtils.isEmpty(name)) {
@@ -217,15 +230,19 @@ public class ChangeProfile extends AppCompatActivity {
         } else if (TextUtils.isEmpty(add)) {
             address.setError("Enter your address");
             Toast.makeText(ChangeProfile.this, "Please write your address...", Toast.LENGTH_SHORT).show();
+        } else if (TextUtils.isEmpty(emailAdds)) {
+            emailAdd.setError("Enter your email address");
+            Toast.makeText(ChangeProfile.this, "Please write your email address...", Toast.LENGTH_SHORT).show();
         }else {
-            updateData(name, add, phone);
+            updateData(name, add, phone, emailAdds);
         }
     }
 
-    private void updateData(String name, String add, String phone) {
+    private void updateData(String name, String add, String phone, String emailAdds) {
         HashMap User = new HashMap();
         User.put("fullname", name);
         User.put("houseAddress", add);
+        User.put("email", emailAdds);
         User.put("phoneNumber", phone);
         Auth = FirebaseAuth.getInstance();
         Users = Auth.getCurrentUser();
@@ -235,8 +252,8 @@ public class ChangeProfile extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task task) {
                 if (task.isSuccessful()){
-                        Toast.makeText(ChangeProfile.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(ChangeProfile.this, ChangeProfile.class);
+                    Toast.makeText(ChangeProfile.this, "Successfully Updated", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ChangeProfile.this, MyProfile.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(ChangeProfile.this, "Error", Toast.LENGTH_SHORT).show();
@@ -244,8 +261,8 @@ public class ChangeProfile extends AppCompatActivity {
             }
         });
     }
-
-   /* @Override
+/*
+    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -260,6 +277,6 @@ public class ChangeProfile extends AppCompatActivity {
             startActivity(new Intent(ChangeProfile.this, ChangeProfile.class));
             finish();
         }
-    }*/
-
+    }
+*/
 }

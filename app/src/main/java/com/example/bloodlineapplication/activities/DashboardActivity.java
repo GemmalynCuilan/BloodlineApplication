@@ -150,17 +150,13 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.nav_profile) {
-            Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
-            startActivity(intent);
-        }
 
         if (id == R.id.nav_changeProfile) {
-            Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
+            Intent intent = new Intent(DashboardActivity.this, ChangeProfile.class);
             startActivity(intent);
         }
         if (id == R.id.nav_changePassword) {
-            Intent intent = new Intent(DashboardActivity.this, FindDonorActivity.class);
+            Intent intent = new Intent(DashboardActivity.this, ChangePassword.class);
             startActivity(intent);
         }
         if (id == R.id.nav_messages) {
