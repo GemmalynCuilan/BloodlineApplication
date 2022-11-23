@@ -98,7 +98,12 @@ public class ChangePassword extends AppCompatActivity {
                 User.updatePassword(newPass).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(ChangePassword.this, "Password updated", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChangePassword.this, "Password successfully updated", Toast.LENGTH_SHORT).show();
+                        Auth.signOut();
+                        Intent intent = new Intent(ChangePassword.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
