@@ -18,10 +18,7 @@
             android:id="@+id/nav_changePassword"
             android:icon="@drawable/ic_lock"
             android:title="Change Password"/>
-        <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/ic_message"
-            android:title="Messages"/>
+
 
         <item android:title="Settings">
             <menu>

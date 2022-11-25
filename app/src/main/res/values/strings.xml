@@ -51,5 +51,8 @@
     <string name="Blood">D or R</string>
     <string name="title_activity_navigation">NavigationActivity</string>
     <string name="google_api_keys">AIzaSyDdmiXxOX3nqFRxhKf2GThZCjQvRzIiFm4</string>
+    <string name="serialnumber">Enter your serial number</string>
+    <string name="address">Address</string>
+    <string name="add">Address:</string>
 
 </resources>

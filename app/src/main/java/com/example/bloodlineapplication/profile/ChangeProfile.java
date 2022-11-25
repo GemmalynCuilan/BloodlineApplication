@@ -45,7 +45,7 @@ public class ChangeProfile extends AppCompatActivity {
 
     FirebaseAuth Auth;
     FirebaseUser Users;
-    private ImageButton settingsArrowBack;
+
     private CircleImageView profileImage;
     private EditText address, phoneNumber, fullname, emailAdd;
     private Button updateBTN;

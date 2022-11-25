@@ -13,7 +13,6 @@ import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.profile.ChangePassword;
 import com.example.bloodlineapplication.profile.ChangeProfile;
 import com.example.bloodlineapplication.profile.MyProfile;
-import com.example.bloodlineapplication.profile.Profile;
 import com.example.bloodlineapplication.update.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,7 +30,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -44,7 +42,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
     private FirebaseUser User;
     private FirebaseAuth Auth;
     private RecyclerView myList;
-    private TextView menu_profile, menu_search, menu_view, menu_banks;
+    private TextView menu_profile, menu_search, menu_view, menu_banks, menu_infos;
     private Button logout;
 
     private String userId = "";
@@ -76,7 +74,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         menu_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, FindDonorActivity.class);
+                Intent intent = new Intent(DashboardActivity.this, PostActivity.class);
                 startActivity(intent);
             }
         });
@@ -85,6 +83,14 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
+                startActivity(intent);
+            }
+        });
+        menu_infos = (TextView) findViewById(R.id.menu_infos);
+        menu_infos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DashboardActivity.this, InformationActivity.class);
                 startActivity(intent);
             }
         });
@@ -158,10 +164,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         if (id == R.id.nav_changePassword) {
             Intent intent = new Intent(DashboardActivity.this, ChangePassword.class);
             startActivity(intent);
-        }
-        if (id == R.id.nav_messages) {
-            Intent intent = new Intent(DashboardActivity.this, MapActivity.class);
-            startActivity(intent);
+
 
         }else if (id == R.id.menuLogout) {
             Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
