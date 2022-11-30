@@ -30,7 +30,7 @@ import java.util.HashMap;
 public class RegistrationActivity extends AppCompatActivity{
 
     private Spinner  bloodGroups, blood;
-    private EditText fullname, address, email, password, phoneNumber;
+    private EditText fullname, address, email, password, age;
     private Button signUpButton;
     private FirebaseAuth mAuth;
     private ProgressDialog loadBar;
@@ -46,7 +46,7 @@ public class RegistrationActivity extends AppCompatActivity{
         fullname = (EditText) findViewById(R.id.fullname);
         address = (EditText) findViewById(R.id.address);
         email = (EditText) findViewById(R.id.email);
-        phoneNumber = (EditText) findViewById(R.id.phoneNumber);
+        age = (EditText) findViewById(R.id.age);
         password = (EditText) findViewById(R.id.password);
         bloodGroups = (Spinner) findViewById(R.id.bloodGroups);
         blood = (Spinner) findViewById(R.id.blood);
@@ -77,7 +77,7 @@ public class RegistrationActivity extends AppCompatActivity{
         String name = fullname.getText().toString().trim();
         String userAddress = address.getText().toString().trim();
         String emailAdd = email.getText().toString().trim();
-        String phone = phoneNumber.getText().toString().trim();
+        String userAge = age.getText().toString().trim();
         String pass = password.getText().toString().trim();
         String bgroup = bloodGroups.getSelectedItem().toString().trim();
         String bloodDr = blood.getSelectedItem().toString().trim();
@@ -88,9 +88,9 @@ public class RegistrationActivity extends AppCompatActivity{
         } else if (pass.isEmpty()) {
             password.setError("Enter Password!");
             Toast.makeText(this, "Please input your password...", Toast.LENGTH_SHORT).show();
-        } else if (phone.isEmpty()) {
-            phoneNumber.setError("Enter your 11 digit phone number");
-            Toast.makeText(this, "Please enter your phone number...", Toast.LENGTH_SHORT).show();
+        } else if (userAge.isEmpty()) {
+            age.setError("Enter your age");
+            Toast.makeText(this, "Please enter your age...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(userAddress)) {
             address.setError("Enter your address");
             Toast.makeText(this, "Please write your address...", Toast.LENGTH_SHORT).show();
@@ -98,12 +98,12 @@ public class RegistrationActivity extends AppCompatActivity{
             fullname.setError("Enter your full name");
             Toast.makeText(this, "Please write your full name...", Toast.LENGTH_SHORT).show();
         } else {
-            register(emailAdd, pass, phone, userAddress, name, bgroup, bloodDr);
+            register(emailAdd, pass, userAge, userAddress, name, bgroup, bloodDr);
         }
 
     }
 
-    private void register(String emailAdd, String pass, String phone, String userAddress, String name, String bgroup, String bloodDr) {
+    private void register(String emailAdd, String pass, String userAge, String userAddress, String name, String bgroup, String bloodDr) {
         loadBar.setTitle("Creating Account");
         loadBar.setMessage("Please wait!");
         loadBar.setCanceledOnTouchOutside(false);
@@ -121,8 +121,8 @@ public class RegistrationActivity extends AppCompatActivity{
                     hashMap.put("userId", userId);
                     hashMap.put("email", emailAdd);
                     hashMap.put("password", pass);
-                    hashMap.put("phoneNumber", phone);
-                    hashMap.put("houseAddress", userAddress);
+                    hashMap.put("age", userAge);
+                    hashMap.put("address", userAddress);
                     hashMap.put("fullname", name);
                     hashMap.put("bloodGroups", bgroup);
                     hashMap.put("blood", bloodDr);

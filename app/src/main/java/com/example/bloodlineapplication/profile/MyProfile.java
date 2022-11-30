@@ -30,7 +30,7 @@ public class MyProfile extends AppCompatActivity {
     private FirebaseAuth Auth;
     private DatabaseReference databaseReference;
 
-    private TextView name, phone, address, email, bloodDr, bgroup;
+    private TextView name, age, address, email, bloodDr, bgroup;
     private CircleImageView profileImage;
 
     @Override
@@ -50,7 +50,7 @@ public class MyProfile extends AppCompatActivity {
         name =  (TextView) findViewById(R.id.fullname);
         address =  (TextView) findViewById(R.id.address);
         email =  (TextView) findViewById(R.id.email);
-        phone =  (TextView) findViewById(R.id.phoneNumber);
+        age =  (TextView) findViewById(R.id.age);
         bgroup = (TextView) findViewById(R.id.bloodGroups);
         bloodDr = (TextView) findViewById(R.id.blood);
 
@@ -68,8 +68,8 @@ public class MyProfile extends AppCompatActivity {
                 bloodDr.setText(user.getBlood());
                 bloodDr.setAllCaps(true);
                 name.setText(user.getFullname());
-                phone.setText(user.getPhoneNumber());
-                address.setText(user.getHouseAddress());
+                age.setText(user.getAge());
+                address.setText(user.getAddress());
                 email.setText(Users.getEmail());
                 bgroup.setText(user.getBloodGroups());
                 bgroup.setAllCaps(true);

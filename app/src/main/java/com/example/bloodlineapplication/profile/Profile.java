@@ -65,7 +65,7 @@ public class Profile extends AppCompatActivity{
                 User user = snapshot.getValue (User.class);
                 if (user != null) {
                     String fullname = user.fullname;
-                    String userAddress = user.houseAddress;
+                    String userAddress = user.address;
                     String emailAddress = user.email;
                     String pass = user.password;
                     String bgroup = user.bloodGroups;

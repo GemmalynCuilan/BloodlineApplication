@@ -1,7 +1,7 @@
 package com.example.bloodlineapplication.update;
 
 public class User {
-    public String userId, fullname, houseAddress, email, phoneNumber ,password,  bloodGroups, blood, profileImage;
+    public String userId, fullname, address, email, age ,password,  bloodGroups, blood, profileImage;
 
     public User() {
 
@@ -23,12 +23,12 @@ public class User {
         this.fullname = fullname;
     }
 
-    public String getHouseAddress() {
-        return houseAddress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setHouseAddress(String houseAddress) {
-        this.houseAddress = houseAddress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {
@@ -39,12 +39,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getAge() {
+        return age;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setAge(String age) {
+        this.age = age;
     }
 
     public String getPassword() {
@@ -79,13 +79,13 @@ public class User {
         this.profileImage = profileImage;
     }
 
-    public User(String userId, String fullname, String houseAddress, String email, String phoneNumber,
+    public User(String userId, String fullname, String address, String email, String age,
                 String password, String bloodGroups, String blood, String profileImage) {
         this.userId = userId;
         this.fullname = fullname;
-        this.houseAddress = houseAddress;
+        this.address = address;
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.age = age;
         this.password = password;
         this.bloodGroups = bloodGroups;
         this.blood = blood;

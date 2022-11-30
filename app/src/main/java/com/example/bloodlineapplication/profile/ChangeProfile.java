@@ -47,7 +47,7 @@ public class ChangeProfile extends AppCompatActivity {
     FirebaseUser Users;
 
     private CircleImageView profileImage;
-    private EditText address, phoneNumber, fullname, emailAdd;
+    private EditText address, age, fullname, emailAdd;
     private Button updateBTN;
     private Button changeProfilePic;
     private DatabaseReference databaseReference;
@@ -97,7 +97,7 @@ public class ChangeProfile extends AppCompatActivity {
 
         fullname = (EditText) findViewById(R.id.fullnameEdit);
         address = (EditText) findViewById(R.id.addressEdit);
-        phoneNumber = (EditText) findViewById(R.id.phoneNumberEdit);
+        age = (EditText) findViewById(R.id.ageEdit);
         emailAdd = (EditText) findViewById(R.id.emailEdit);
 
         Auth = FirebaseAuth.getInstance();
@@ -110,8 +110,8 @@ public class ChangeProfile extends AppCompatActivity {
                 assert user != null;
 
                 fullname.setText(user.getFullname());
-                phoneNumber.setText(user.getPhoneNumber());
-                address.setText(user.getHouseAddress());
+                age.setText(user.getAge());
+                address.setText(user.getAddress());
                 emailAdd.setText(user.getEmail());
 
 
@@ -136,16 +136,16 @@ public class ChangeProfile extends AppCompatActivity {
     private void updateWithProfilePic() {
         String name = fullname.getText().toString();
         String add = address.getText().toString();
-        String phone = phoneNumber.getText().toString();
+        String userAge = age.getText().toString();
         String emailAdds = emailAdd.getText().toString();
 
 
         if (TextUtils.isEmpty(name)) {
             fullname.setError("Enter your name");
             Toast.makeText(ChangeProfile.this, "Please write your middle name / initial...", Toast.LENGTH_SHORT).show();
-        }else if (phone.isEmpty()) {
-            phoneNumber.setError("Enter your 11 digit phone number");
-            Toast.makeText(ChangeProfile.this, "Please enter your phone number...", Toast.LENGTH_SHORT).show();
+        }else if (userAge.isEmpty()) {
+            age.setError("Enter your age");
+            Toast.makeText(ChangeProfile.this, "Please enter your age...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(add)) {
             address.setError("Enter your address");
             Toast.makeText(ChangeProfile.this, "Please write your address...", Toast.LENGTH_SHORT).show();
@@ -153,12 +153,12 @@ public class ChangeProfile extends AppCompatActivity {
             emailAdd.setError("Enter your email address");
             Toast.makeText(ChangeProfile.this, "Please write your email address...", Toast.LENGTH_SHORT).show();
         }else {
-            updateDataPic(name, add, phone, emailAdds);
+            updateDataPic(name, add, userAge, emailAdds);
         }
 
     }
 
-    private void updateDataPic(String name, String add, String phone, String emailAdds) {
+    private void updateDataPic(String name, String add, String userAge, String emailAdds) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Updating Profile");
         progressDialog.setMessage("Please wait, while we are updating your account information");
@@ -191,10 +191,10 @@ public class ChangeProfile extends AppCompatActivity {
 
                         HashMap User = new HashMap();
                         User.put("fullname", name);
-                        User.put("houseAddress", add);
+                        User.put("address", add);
                         User.put("email", emailAdds);
-                        User.put("phoneNumber", phone);
-                        User.put("profileImage", myUrl);
+                        User.put("age", userAge);
+                        User.put("profileImage",myUrl);
                         ref.child(Users.getUid()).updateChildren(User);
 
                         progressDialog.dismiss();
@@ -217,16 +217,16 @@ public class ChangeProfile extends AppCompatActivity {
     private void updateWithNoProfilePic() {
         String name = fullname.getText().toString();
         String add = address.getText().toString();
-        String phone = phoneNumber.getText().toString();
+        String userAge = age.getText().toString();
         String emailAdds = emailAdd.getText().toString();
 
 
         if (TextUtils.isEmpty(name)) {
             fullname.setError("Enter your name");
             Toast.makeText(ChangeProfile.this, "Please write your middle name / initial...", Toast.LENGTH_SHORT).show();
-        }else if (phone.isEmpty()) {
-            phoneNumber.setError("Enter your 11 digit phone number");
-            Toast.makeText(ChangeProfile.this, "Please enter your phone number...", Toast.LENGTH_SHORT).show();
+        }else if (userAge.isEmpty()) {
+            age.setError("Enter your age");
+            Toast.makeText(ChangeProfile.this, "Please enter your age...", Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(add)) {
             address.setError("Enter your address");
             Toast.makeText(ChangeProfile.this, "Please write your address...", Toast.LENGTH_SHORT).show();
@@ -234,16 +234,16 @@ public class ChangeProfile extends AppCompatActivity {
             emailAdd.setError("Enter your email address");
             Toast.makeText(ChangeProfile.this, "Please write your email address...", Toast.LENGTH_SHORT).show();
         }else {
-            updateData(name, add, phone, emailAdds);
+            updateData(name, add, userAge, emailAdds);
         }
     }
 
-    private void updateData(String name, String add, String phone, String emailAdds) {
+    private void updateData(String name, String add, String userAge, String emailAdds) {
         HashMap User = new HashMap();
         User.put("fullname", name);
-        User.put("houseAddress", add);
+        User.put("address", add);
         User.put("email", emailAdds);
-        User.put("phoneNumber", phone);
+        User.put("age", userAge);
         Auth = FirebaseAuth.getInstance();
         Users = Auth.getCurrentUser();
 

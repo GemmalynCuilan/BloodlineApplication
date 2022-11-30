@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +44,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
     private FirebaseUser User;
     private FirebaseAuth Auth;
     private RecyclerView myList;
-    private TextView menu_profile, menu_search, menu_view, menu_banks, menu_infos;
+    private ImageView menu_profile, menu_search, menu_view, menu_banks, menu_infos;
     private Button logout;
 
     private String userId = "";
@@ -54,15 +56,15 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        menu_profile = (TextView) findViewById(R.id.menu_profile);
+        menu_profile = (ImageView) findViewById(R.id.menu_profile);
         menu_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
+                Intent intent = new Intent(DashboardActivity.this, MainActivity2.class);
                 startActivity(intent);
             }
         });
-        menu_search = (TextView) findViewById(R.id.menu_search);
+        menu_search = (ImageView) findViewById(R.id.menu_search);
         menu_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,7 +72,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
                 startActivity(intent);
             }
         });
-        menu_view = (TextView) findViewById(R.id.menu_view);
+        menu_view = (ImageView) findViewById(R.id.menu_view);
         menu_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,7 +80,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
                 startActivity(intent);
             }
         });
-        menu_banks = (TextView) findViewById(R.id.menu_banks);
+        menu_banks = (ImageView) findViewById(R.id.menu_banks);
         menu_banks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +88,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
                 startActivity(intent);
             }
         });
-        menu_infos = (TextView) findViewById(R.id.menu_infos);
+        menu_infos = (ImageView) findViewById(R.id.menu_infos);
         menu_infos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

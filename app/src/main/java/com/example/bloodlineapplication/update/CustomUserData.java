@@ -1,49 +1,48 @@
 package com.example.bloodlineapplication.update;
 
+import android.widget.EditText;
+import android.widget.Spinner;
+
 import java.io.Serializable;
 
 public class CustomUserData implements Serializable {
+    private String SerialNumber, Address;
+    private String  BloodGroups;
 
-    private String Name,  Email, Address, BloodGroups, Blood;
 
-    public CustomUserData() {
+
+
+    public CustomUserData(EditText serialnumber, EditText address, Spinner bloodGroups) {
 
     }
-public CustomUserData(String address, String name, String email, String bloodGroups,String blood){
-        Name = name;
+
+    public CustomUserData(String serialnumber, String address, String bloodGroups) {
+        SerialNumber = serialnumber;
         Address = address;
-        Email = email;
         BloodGroups = bloodGroups;
-        Blood = blood;
+
+    }
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String serialnumber) {
+        SerialNumber = serialnumber;
+    }
+    public String getAddress() {
+        return Address;
+    }
+
+    public void setAddress(String address) {
+        this.Address = address;
+    }
+
+    public String getBloodGroups() {
+        return BloodGroups;
+    }
+
+    public void setBloodGroups(String bloodGroups) {
+        this.BloodGroups = bloodGroups;
+    }
+
 }
-        public String getName(){
-                return Name;
-        }
-        public void setName(String name){
-                this.Name = name;
-        }
-        public String getAddress(){
-                return Address;
-        }
-        public void setAddress(String address){
-                this.Address = address;
-        }
-        public String getEmail(){
-            return Email;
-        }
-        public void setEmail(String email){
-            this.Email = email;
-        }
-        public String getBloodGroups(){
-            return BloodGroups;
-        }
-        public void setBloodGroups(String bloodGroups){
-            this.BloodGroups = bloodGroups;
-        }
-        public String getBlood(){
-            return Blood;
-        }
-        public void setBlood(String blood){
-            this.Blood = blood;
-        }
-        }

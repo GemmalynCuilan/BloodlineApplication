@@ -1,46 +1,67 @@
 package com.example.bloodlineapplication.model;
+
 public class UserData {
 
-    private String Name, Email, Address;
-    private int Blood, BloodGroups,  Number;
+    private String Name, Email, Contact, Address;
+    private int Gender, BloodGroup, Division;
 
     public UserData() {
 
     }
-    public String getName(){
-        return Name;
+
+    public String getContact() {
+        return Contact;
     }
-    public void setName(String name){
-        this.Name = name;
+
+    public void setContact(String contact) {
+        Contact = contact;
     }
-    public String getEmail(){
-        return Email;
-    }
-    public void setEmail(String email){
-        this.Email = email;
-    }
-    public String getAddress(){
+
+    public String getAddress() {
         return Address;
     }
-    public void setAddress(String address){
+
+    public void setAddress(String address) {
         this.Address = address;
     }
-    public int getBloodGroups(){
-        return BloodGroups;
+
+    public int getDivision() {
+        return Division;
     }
-    public void setBloodGroups(int bloodGroups){
-        this.BloodGroups = bloodGroups;
+
+    public void setDivision(int division) {
+        this.Division = division;
     }
-    public int getBlood(){
-        return Blood;
+
+    public String getName() {
+        return Name;
     }
-    public void setBlood(int blood){
-        this.Blood = blood;
+
+    public int getBloodGroup() {
+        return BloodGroup;
     }
-    public int getNumber(){
-        return Number;
+
+    public void setBloodGroup(int bloodGroup) {
+        this.BloodGroup = bloodGroup;
     }
-    public void setNumber(int number){
-        this.Number = number;
+
+    public String getEmail() {
+        return Email;
     }
+
+    public int getGender() {
+        return Gender;
+    }
+
+    public void setName(String name) { this.Name = name; }
+
+    public void setEmail(String email) {
+        this.Email = email;
+    }
+
+    public void setGender(int gender) {
+        this.Gender = gender;
+    }
+
+
 }

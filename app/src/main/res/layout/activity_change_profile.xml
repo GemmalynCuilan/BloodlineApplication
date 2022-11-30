@@ -125,13 +125,13 @@
                     android:textStyle="bold" />
 
                 <EditText
-                    android:id="@+id/phoneNumberEdit"
+                    android:id="@+id/ageEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/emailEdit"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
-                    android:text="+639 123 4567 890"
+                    android:text="20 years old"
                     android:textColor="@color/black"
                     android:textSize="19sp"
                     android:textStyle="bold" />
@@ -140,7 +140,7 @@
                     android:id="@+id/bloodEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/phoneNumberEdit"
+                    android:layout_below="@id/ageEdit"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="20dp"
                     android:text="Blood Donor"
