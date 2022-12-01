@@ -1,4 +1,4 @@
-package com.example.bloodlineapplication.profile;
+package com.example.bloodlineapplication.admin;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,69 +24,48 @@ import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MyProfile extends AppCompatActivity {
+public class AdminProfile extends AppCompatActivity {
 
-    private FirebaseUser Users;
+    private FirebaseUser Admin;
     private FirebaseAuth Auth;
     private DatabaseReference databaseReference;
 
-    private TextView name, age, address, email, bloodDr, bgroup;
-    private CircleImageView profileImage;
+    private TextView name, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_profile);
+        setContentView(R.layout.activity_admin_profile);
 
         ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
         arrowBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyProfile.this, DashboardActivity.class);
+                Intent intent = new Intent(AdminProfile.this, AdminDashboard.class);
                 startActivity(intent);
             }
         });
 
         name =  (TextView) findViewById(R.id.fullname);
-        address =  (TextView) findViewById(R.id.address);
         email =  (TextView) findViewById(R.id.email);
-        age =  (TextView) findViewById(R.id.age);
-        bgroup = (TextView) findViewById(R.id.bloodGroups);
-        bloodDr = (TextView) findViewById(R.id.blood);
 
-
-        profileImage = (CircleImageView) findViewById(R.id.profileImage);
 
         Auth = FirebaseAuth.getInstance();
-        Users = Auth.getCurrentUser();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(Users.getUid());
+        Admin = Auth.getCurrentUser();
+        databaseReference = FirebaseDatabase.getInstance().getReference("admin").child(Admin.getUid());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User user = snapshot.getValue(User.class);
-                assert user != null;
-                bloodDr.setText(user.getBlood());
-                bloodDr.setAllCaps(true);
-                name.setText(user.getFullname());
-                age.setText(user.getAge());
-                address.setText(user.getAddress());
-                email.setText(Users.getEmail());
-                bgroup.setText(user.getBloodGroups());
-                bgroup.setAllCaps(true);
-
-
-                if(user.getProfileImage().equals("default")){
-                    profileImage.setImageResource(R.drawable.logo);
-                }else{
-                    Glide.with(getApplicationContext()).load(user.getProfileImage()).into(profileImage);
-
-                }
+                Admin admin = snapshot.getValue(Admin.class);
+                assert admin != null;
+                name.setText(admin.getFullname());
+                email.setText(admin.getEmail());
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(MyProfile.this,"Error, please report this bug!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AdminProfile.this,"Error, please report this bug!", Toast.LENGTH_SHORT).show();
             }
         });
 

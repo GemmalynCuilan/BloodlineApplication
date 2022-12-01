@@ -1,4 +1,4 @@
-package com.example.bloodlineapplication.adapters;
+package com.example.bloodlineapplication.model;
 
 import android.view.View;
 

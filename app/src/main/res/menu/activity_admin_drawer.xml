@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+
+        <item
+            android:id="@+id/nav_changePassword"
+            android:icon="@drawable/ic_lock"
+            android:title="Change Password"/>
+
+        <item android:title="Blood Groups">
+            <menu>
+                <item
+                    android:id="@+id/nav_aP"
+                    android:icon="@drawable/ic_logout"
+                    android:title="A posiitive"/>
+                <item
+                    android:id="@+id/nav_aN"
+                    android:icon="@drawable/ic_logout"
+                    android:title="A negative"/>
+                <item
+                    android:id="@+id/nav_bP"
+                    android:icon="@drawable/ic_logout"
+                    android:title="B posiitive"/>
+                <item
+                    android:id="@+id/nav_bN"
+                    android:icon="@drawable/ic_logout"
+                    android:title="B negative"/>
+                <item
+                    android:id="@+id/nav_abP"
+                    android:icon="@drawable/ic_logout"
+                    android:title="AB posiitive"/>
+                <item
+                    android:id="@+id/nav_abN"
+                    android:icon="@drawable/ic_logout"
+                    android:title="AB negative"/>
+                <item
+                    android:id="@+id/nav_oP"
+                    android:icon="@drawable/ic_logout"
+                    android:title="O posiitive"/>
+                <item
+                    android:id="@+id/nav_oN"
+                    android:icon="@drawable/ic_logout"
+                    android:title="B negative"/>
+            </menu>
+
+        </item>
+
+        <item android:title="Settings">
+            <menu>
+                <item
+                    android:id="@+id/menuLogout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="Logout"/>
+            </menu>
+        </item>
+
+    </group>
+</menu>

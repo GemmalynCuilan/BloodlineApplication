@@ -1,7 +1,5 @@
 package com.example.bloodlineapplication.adapters;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,52 +8,49 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bloodlineapplication.update.CustomUserData;
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.update.UserReq;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
-import java.util.ArrayList;
-import java.util.List;
-public class BloodRequestAdapter extends RecyclerView.Adapter<BloodRequestAdapter.PostHolder> {
+public class BloodRequestAdapter extends FirebaseRecyclerAdapter<UserReq, BloodRequestAdapter.PostHolder> {
 
-    Context context;
-    List<CustomUserData> postLists;
 
-    public BloodRequestAdapter(Context context, List<CustomUserData> postLists) {
-        this.context = context;
-        this.postLists = postLists;
+    /**
+     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
+     * {@link FirebaseRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public BloodRequestAdapter(@NonNull FirebaseRecyclerOptions<UserReq> options) {
+        super(options);
     }
 
-     @NonNull
+    @Override
+    protected void onBindViewHolder(@NonNull PostHolder holder, int position, @NonNull UserReq model) {
+        holder.bloodgroup.setText("I Need " + model.getBloodGroups());
+        holder.serialNum.setText("Requested by " + model.getSerialNumber());
+        holder.posted.setText("Posted on: "+model.getTime()+" , "+model.getDate());
+        holder.Address.setText("From: " + model.getAddress());
+    }
+
+    @NonNull
     @Override
     public PostHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(context).inflate(R.layout.request_list_item,parent, false);
-        return new PostHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.request_list_item,parent, false);
+        return new PostHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull PostHolder holder, int i) {
-        CustomUserData customUserData = postLists.get(i);
-        holder.Address.setText("From: "+customUserData.getAddress()+", "+customUserData.getAddress());
-        holder.bloodgroup.setText("Needs "+customUserData.getBloodGroups());
+    class PostHolder extends  RecyclerView.ViewHolder{
 
+        TextView  bloodgroup, Address, serialNum, time, date, posted;
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return postLists.size();
-    }
-
-    public static class PostHolder extends  RecyclerView.ViewHolder{
-
-        TextView  bloodgroup, Address, serialNum, posted;
         public PostHolder(@NonNull View itemView) {
             super(itemView);
-            serialNum = itemView.findViewById(R.id.targetSN);
-            bloodgroup = itemView.findViewById(R.id.targetBG);
-            Address = itemView.findViewById(R.id.reqstLocation);
-            posted = itemView.findViewById(R.id.posted);
+            serialNum = (TextView) itemView.findViewById(R.id.targetSN);
+            bloodgroup = (TextView) itemView.findViewById(R.id.targetBG);
+            Address = (TextView) itemView.findViewById(R.id.reqstLocation);
+            posted = (TextView) itemView.findViewById(R.id.posted);
         }
     }
 

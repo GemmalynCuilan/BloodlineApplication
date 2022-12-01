@@ -6,8 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,21 +15,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.databinding.ActivityMainBinding;
-import com.example.bloodlineapplication.model.UserData;
-import com.example.bloodlineapplication.update.CustomUserData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -45,7 +35,7 @@ public class PostActivity extends AppCompatActivity {
     private EditText serialnumber, address;
     private TextView snum, add, bgrp;
     private Button postbtn;
-
+    private String saveCurrentDate, saveCurrentTime;
 
     FirebaseDatabase firebaseDatabase;
     private FirebaseUser User;
@@ -77,6 +67,14 @@ public class PostActivity extends AppCompatActivity {
 
             }
         });
+
+        Calendar calendar = Calendar.getInstance();
+
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+
+        SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
 
         bloodGroups = (Spinner) findViewById(R.id.bloodGroups);
         serialnumber = (EditText) findViewById(R.id.serialNum);
@@ -111,9 +109,11 @@ public class PostActivity extends AppCompatActivity {
     private void register(String snumber, String userAddress, String userBgrp) {
 
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("Serial number", snumber);
+        hashMap.put("serialNumber", snumber);
         hashMap.put("Address", userAddress);
-        hashMap.put("Blood Group", userBgrp);
+        hashMap.put("bloodGroups", userBgrp);
+        hashMap.put("date", saveCurrentDate);
+        hashMap.put("time", saveCurrentTime);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("posts").child(snumber);
         databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

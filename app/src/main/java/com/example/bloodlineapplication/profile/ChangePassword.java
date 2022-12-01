@@ -16,21 +16,13 @@ import android.widget.Toast;
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.activities.DashboardActivity;
 import com.example.bloodlineapplication.activities.LoginActivity;
-import com.example.bloodlineapplication.update.User;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-
-import kotlin.text.MatchNamedGroupCollection;
 
 public class ChangePassword extends AppCompatActivity {
 

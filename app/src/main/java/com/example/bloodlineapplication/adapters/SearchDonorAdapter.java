@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.update.CustomUserData;
 import com.example.bloodlineapplication.update.DonorData;
 
 import java.util.List;

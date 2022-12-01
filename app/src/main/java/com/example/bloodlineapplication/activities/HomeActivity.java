@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.profile.MyProfile;
-import com.example.bloodlineapplication.profile.Profile;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -54,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
 
     public void ClickProfile(View view){
         //redirect act to profile
-        redirectActivity(this, Profile.class);
+        redirectActivity(this, MyProfile.class);
     }
     public void ClickPostActivity(View view){
         //redirect act to profile

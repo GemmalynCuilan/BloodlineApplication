@@ -6,81 +6,65 @@
     app:cardElevation="8dp"
     android:layout_margin="16dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FAFFFFFF"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/common_google_signin_btn_text_dark_default"
-            android:orientation="vertical"
-            android:padding="5dp">
+            android:background="#FAFFFFFF"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FAFFFFFF"
-                android:orientation="horizontal">
+                android:layout_margin="5dp"
+                android:background="@color/common_google_signin_btn_text_dark_default"
+                android:orientation="vertical"
+                android:padding="5dp">
+
 
                 <TextView
                     android:id="@+id/targetBG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="#FAFFFFFF"
-                    android:text="AB+"
+                    android:text="I need AB+"
+                    android:textAllCaps="true"
                     android:textColor="#020202"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#FAFFFFFF"
-                    android:text=" Blood Donor!"
-                    android:textColor="#020202" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#FAFFFFFF"
-                    android:text="Serial Number: "
-                    android:textColor="#020202" />
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/targetSN"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FAFFFFFF"
-                    android:text="2600-001057-5"
-                    android:textColor="#020202" />
+                    android:text="Requested by: 2600-001057-5"
+                    android:textColor="#020202"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/posted"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFFFFFF"
+                    android:text="Posted: 11:30 PM, 04/04/2022"
+                    android:textColor="#020202"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/reqstLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFFFFFF"
+                    android:text="From: Loakan"
+                    android:textColor="#020202"
+                    android:textSize="16sp" />
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/posted"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FAFFFFFF"
-                android:text="Posted: 11:30 PM, 04/04/2022"
-                android:textColor="#020202" />
-
-            <TextView
-                android:id="@+id/reqstLocation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#FAFFFFFF"
-                android:text="From: Loakan"
-                android:textColor="#020202" />
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 </androidx.cardview.widget.CardView>

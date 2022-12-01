@@ -10,12 +10,14 @@ import android.widget.Button;
 import com.example.bloodlineapplication.R;
 import com.example.bloodlineapplication.activities.LoginActivity;
 import com.example.bloodlineapplication.activities.RegistrationActivity;
+import com.example.bloodlineapplication.admin.AdminLogin;
+import com.example.bloodlineapplication.admin.RegistrationAdmin;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private Button register;
-    private Button login;
+    private Button admin;
+    private Button user;
 
 
 
@@ -25,33 +27,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        register = (Button) findViewById(R.id.register);
-        register.setOnClickListener(new View.OnClickListener() {
+        admin = (Button) findViewById(R.id.admin);
+        admin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openregister();
+                openadmin();
             }
         });
 
-        login = (Button) findViewById(R.id.login);
-        login.setOnClickListener(new View.OnClickListener() {
+        user = (Button) findViewById(R.id.user);
+        user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                openlogin();
+                openuser();
             }
         });
 
     }
 
-    public void openregister() {
-        Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+    public void openadmin() {
+        Intent intent = new Intent(getApplicationContext(), RegistrationAdmin.class);
         startActivity(intent);
 
     }
 
-    public void openlogin() {
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+    public void openuser() {
+        Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
         startActivity(intent);
 
     }

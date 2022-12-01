@@ -1,7 +1,7 @@
-package com.example.bloodlineapplication.update;
+package com.example.bloodlineapplication.model;
 
 public class User {
-    public String userId, fullname, address, email, age ,password,  bloodGroups, blood, profileImage;
+    public String userId, fullname, address, email, age ,password,  bloodGroups, blood, profileImage, serialNum;
 
     public User() {
 
@@ -79,8 +79,16 @@ public class User {
         this.profileImage = profileImage;
     }
 
+    public String getSerialNum() {
+        return serialNum;
+    }
+
+    public void setSerialNum(String serialNum) {
+        this.serialNum = serialNum;
+    }
+
     public User(String userId, String fullname, String address, String email, String age,
-                String password, String bloodGroups, String blood, String profileImage) {
+                String password, String bloodGroups, String blood, String profileImage, String serialNum) {
         this.userId = userId;
         this.fullname = fullname;
         this.address = address;
@@ -90,5 +98,6 @@ public class User {
         this.bloodGroups = bloodGroups;
         this.blood = blood;
         this.profileImage = profileImage;
+        this.serialNum = serialNum;
     }
 }

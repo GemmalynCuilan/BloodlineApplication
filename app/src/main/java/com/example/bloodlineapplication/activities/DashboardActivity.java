@@ -5,17 +5,17 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.admin.MainActivity2;
 import com.example.bloodlineapplication.profile.ChangePassword;
 import com.example.bloodlineapplication.profile.ChangeProfile;
+import com.example.bloodlineapplication.model.User;
 import com.example.bloodlineapplication.profile.MyProfile;
-import com.example.bloodlineapplication.update.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -60,7 +60,7 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         menu_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, MainActivity2.class);
+                Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
                 startActivity(intent);
             }
         });

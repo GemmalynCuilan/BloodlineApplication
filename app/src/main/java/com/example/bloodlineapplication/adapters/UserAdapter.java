@@ -1,4 +1,4 @@
-package com.example.bloodlineapplication.model;
+package com.example.bloodlineapplication.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.update.User;
+import com.example.bloodlineapplication.model.User;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -33,6 +33,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.myVie
         holder.email.setText(model.getEmail());
         holder.blood.setText(model.getBlood());
         holder.bloodGroups.setText(model.getBloodGroups());
+        holder.serialNum.setText(model.getSerialNum());
     }
 
     @NonNull
@@ -44,7 +45,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.myVie
 
     class myViewHolder extends RecyclerView.ViewHolder{
 
-     TextView fullname,age, email, address, bloodGroups, blood;
+     TextView fullname,age, email, address, bloodGroups, blood, serialNum;
 
      public myViewHolder(@NonNull View itemView) {
          super(itemView);
@@ -54,6 +55,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.myVie
          address =(TextView) itemView.findViewById(R.id.addresstext);
          bloodGroups =(TextView) itemView.findViewById(R.id.bloodGroupstext);
          blood =(TextView) itemView.findViewById(R.id.bloodtext);
+         serialNum =(TextView) itemView.findViewById(R.id.serialNumtext);
      }
  }
 }
