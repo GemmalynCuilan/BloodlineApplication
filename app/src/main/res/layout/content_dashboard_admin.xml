@@ -11,16 +11,17 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="321dp"
-        android:layout_height="234dp"
+        android:layout_width="333dp"
+        android:layout_height="218dp"
         android:background="@drawable/background_btn"
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.311">
+        app:layout_constraintVertical_bias="0.345">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -28,45 +29,10 @@
 
 
             <LinearLayout
-                android:id="@+id/layoutProfile"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="42dp"
-                android:background="@drawable/bottom_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/layoutSearch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/menu_profile"
-                    android:layout_width="93dp"
-                    android:layout_height="74dp"
-                    android:layout_margin="4dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/profile" />
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Registration List"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
                 android:id="@+id/layoutSearch"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="28dp"
                 android:background="@drawable/bottom_background"
                 android:gravity="center"
@@ -92,6 +58,35 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/layoutMessage"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bottom_background"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/menu_message"
+                    android:layout_width="86dp"
+                    android:layout_height="91dp"
+                    android:layout_margin="4dp"
+                    android:contentDescription="@string/app_name"
+                    android:padding="8dp"
+                    android:src="@drawable/comments" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Messages"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

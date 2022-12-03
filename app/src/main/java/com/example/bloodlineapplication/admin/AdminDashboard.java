@@ -17,16 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.bloodlineapplication.R;
-import com.example.bloodlineapplication.activities.DashboardActivity;
-import com.example.bloodlineapplication.activities.FindDonorActivity;
-import com.example.bloodlineapplication.activities.LoginActivity;
-import com.example.bloodlineapplication.model.User;
 import com.example.bloodlineapplication.profile.ChangePassword;
-import com.example.bloodlineapplication.profile.ChangeProfile;
-import com.example.bloodlineapplication.profile.MyProfile;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,8 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class AdminDashboard extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView recyclerView;
@@ -46,7 +36,7 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
     private FirebaseAuth Auth;
     private Button logout;
 
-    private ImageView menu_profile, menu_request;
+    private ImageView menu_profile, menu_request, menu_message;
 
     private DatabaseReference databaseReference;
     private String userId = "";
@@ -71,7 +61,14 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
                 startActivity(intent);
             }
         });
-
+        menu_message = (ImageView) findViewById(R.id.menu_message);
+        menu_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AdminDashboard.this, ViewRequestActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -127,59 +124,27 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
+        switch (item.getItemId()){
 
+            case R.id.nav_ap:
+                Intent intent1 = new Intent(AdminDashboard.this, CategorySelectedItem.class);
+                startActivity(intent1);
+                break;
+            case R.id.nav_an:
+                Intent intent2 = new Intent(AdminDashboard.this, CategorySelectedItem.class);
+                startActivity(intent2);
+                break;
+            case R.id.nav_changePassword:
+            Intent intent3 = new Intent(AdminDashboard.this, ChangePassword.class);
+            startActivity(intent3);
+            break;
 
-        if (id == R.id.nav_changePassword) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_aP) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_aN) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_bP) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_bN) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_abP) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_abN) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_oP) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        }
-        if (id == R.id.nav_oN) {
-            Intent intent = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent);
-
-        } else if (id == R.id.menuLogout) {
-            Intent intent = new Intent(AdminDashboard.this, LoginActivity.class);
+            case R.id.menuLogout:
+            Intent intent4 = new Intent(AdminDashboard.this, AdminLogin.class);
             Toast.makeText(AdminDashboard.this, "User has been Logout sucessfully!", Toast.LENGTH_LONG).show();
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             Auth.signOut();
-            startActivity(intent);
+            startActivity(intent4);
             finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

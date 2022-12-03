@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bloodlineapplication.R;
+import com.example.bloodlineapplication.admin.AdminLogin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity  {
 
-    private TextView backButton, loginButton;
+    private TextView backButton, loginButton, textButton;
     private EditText email, password;
     ProgressDialog loadBar;
     private FirebaseAuth mAuth;
@@ -45,6 +46,14 @@ public class LoginActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+            }
+        });
+        textButton = (TextView) findViewById(R.id.textButton);
+        textButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, AdminLogin.class);
                 startActivity(intent);
             }
         });

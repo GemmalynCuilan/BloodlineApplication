@@ -88,7 +88,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Search Blood Donor"
+                    android:text="Search for Blood type"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>

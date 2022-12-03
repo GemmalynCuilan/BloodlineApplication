@@ -47,13 +47,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openadmin() {
-        Intent intent = new Intent(getApplicationContext(), RegistrationAdmin.class);
+        Intent intent = new Intent(getApplicationContext(), AdminLogin.class);
         startActivity(intent);
 
     }
 
     public void openuser() {
-        Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
 
     }

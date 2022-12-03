@@ -19,8 +19,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="341dp"
-        android:layout_height="346dp"
+        android:layout_width="334dp"
+        android:layout_height="389dp"
         android:layout_marginTop="64dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,24 +32,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
+            android:drawableLeft="@drawable/ic_email"
             android:drawablePadding="28dp"
             android:hint="Enter email address"
             android:inputType="textEmailAddress"
             android:padding="20dp"
-            android:textColorHint="@color/black"
-            android:drawableLeft="@drawable/ic_email"/>
+            android:textColorHint="@color/black" />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
+            android:drawableLeft="@drawable/ic_lock"
             android:drawablePadding="28dp"
             android:hint="Enter password"
             android:inputType="textPassword"
             android:padding="20dp"
-            android:textColorHint="@color/black"
-            android:drawableLeft="@drawable/ic_lock"/>
+            android:textColorHint="@color/black" />
 
 
         <Button
@@ -60,10 +60,10 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="8dp"
+            android:background="#F44336"
             android:text="Enter"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:background="#F44336"/>
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/backButton"
@@ -72,6 +72,17 @@
             android:layout_marginTop="15dp"
             android:gravity="center"
             android:text="Don't have an account? Sign up"
+            android:textColor="#000"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="Login to admin"
             android:textColor="#000"
             android:textSize="18dp"
             android:textStyle="bold" />
