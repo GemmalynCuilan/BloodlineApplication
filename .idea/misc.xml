@@ -40,7 +40,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_dashboard.xml" value="0.16" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_find_blood_donor.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_find_center.xml" value="0.12" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_find_donor.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_find_donor.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_home.xml" value="0.18" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_home_admin.xml" value="0.16842105263157894" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_information.xml" value="0.22" />
@@ -56,12 +56,12 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_profile.xml" value="0.12" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_registration.xml" value="0.18" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_registration_admin.xml" value="0.16" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_view_request.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/activity_view_request.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/app_bar_admin.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/app_bar_dashboard.xml" value="0.1621376811594203" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/app_bar_navigation.xml" value="0.15217391304347827" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/content_admin.xml" value="0.16842105263157894" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/content_dashboard.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/content_dashboard.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/content_dashboard_admin.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/content_navigation.xml" value="0.15217391304347827" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/layout/fragment_b_d.xml" value="0.2" />
@@ -88,6 +88,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/menu/activity_main_drawer.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/menu/dashboard.xml" value="0.1953125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/menu/navigation.xml" value="0.2" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/menu/searchmenu.xml" value="0.2325493171471927" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.101" />
         <entry key="..\:/Users/user/AndroidStudioProjects/BloodlineApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.101" />
       </map>

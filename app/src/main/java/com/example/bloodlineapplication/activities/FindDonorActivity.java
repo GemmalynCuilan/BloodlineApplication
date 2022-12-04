@@ -23,9 +23,6 @@ public class FindDonorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find_donor);
 
         bloodGroups = (Spinner) findViewById(R.id.bloodGroups);
-        btnSearch = (Button) findViewById(R.id.btnSearch);
-        textView2 = (TextView) findViewById(R.id.textView2);
-
 
         ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
         arrowBack.setOnClickListener(new View.OnClickListener() {

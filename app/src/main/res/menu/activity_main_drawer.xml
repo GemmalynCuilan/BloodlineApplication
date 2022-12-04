@@ -8,16 +8,24 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
+        <item android:title="Profile Settings">
+            <menu>
+                <item
+                    android:id="@+id/nav_myProfile"
+                    android:icon="@drawable/ic_account"
+                    android:title="My Profile"/>
+                <item
+                    android:id="@+id/nav_changeProfile"
+                    android:icon="@drawable/ic_account"
+                    android:title="Change Profile"/>
+                <item
+                    android:id="@+id/nav_changePassword"
+                    android:icon="@drawable/ic_lock"
+                    android:title="Change Password"/>
 
-        <item
-            android:id="@+id/nav_changeProfile"
-            android:icon="@drawable/ic_account"
-            android:title="Change Profile"/>
+            </menu>
+        </item>
 
-        <item
-            android:id="@+id/nav_changePassword"
-            android:icon="@drawable/ic_lock"
-            android:title="Change Password"/>
 
 
         <item android:title="Settings">

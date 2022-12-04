@@ -56,14 +56,6 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        menu_profile = (ImageView) findViewById(R.id.menu_profile);
-        menu_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
-                startActivity(intent);
-            }
-        });
         menu_search = (ImageView) findViewById(R.id.menu_search);
         menu_search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,7 +150,10 @@ public class DashboardActivity extends AppCompatActivity  implements NavigationV
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-
+        if (id == R.id.nav_myProfile) {
+            Intent intent = new Intent(DashboardActivity.this, MyProfile.class);
+            startActivity(intent);
+        }
         if (id == R.id.nav_changeProfile) {
             Intent intent = new Intent(DashboardActivity.this, ChangeProfile.class);
             startActivity(intent);

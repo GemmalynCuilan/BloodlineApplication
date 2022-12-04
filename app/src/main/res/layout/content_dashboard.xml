@@ -11,8 +11,8 @@
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="317dp"
-        android:layout_height="442dp"
+        android:layout_width="318dp"
+        android:layout_height="353dp"
         android:background="@drawable/background_btn"
         android:overScrollMode="never"
         android:scrollbars="none"
@@ -26,42 +26,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
-            <LinearLayout
-                android:id="@+id/layoutProfile"
-                android:layout_width="125dp"
-                android:layout_height="125dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="42dp"
-                android:background="@drawable/bottom_background"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/layoutView"
-                app:layout_constraintDimensionRatio="H,1:1"
-                app:layout_constraintEnd_toStartOf="@+id/layoutSearch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:layout_width="93dp"
-                    android:layout_height="74dp"
-                    android:layout_margin="4dp"
-                    android:contentDescription="@string/app_name"
-                    android:padding="8dp"
-                    android:src="@drawable/profile"
-                    android:id="@+id/menu_profile"/>
-
-                <TextView
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Profile"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/layoutSearch"
@@ -88,7 +52,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Search for Blood type"
+                    android:text="Track Blood journey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -97,14 +61,14 @@
                 android:id="@+id/layoutView"
                 android:layout_width="125dp"
                 android:layout_height="125dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
                 android:background="@drawable/bottom_background"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintDimensionRatio="H,1:1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutProfile">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
                     android:id="@+id/menu_view"
@@ -166,10 +130,10 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.145"
+                app:layout_constraintHorizontal_bias="0.083"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutView"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintVertical_bias="0.0">
 
                 <ImageView
                     android:id="@+id/menu_infos"

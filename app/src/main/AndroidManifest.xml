@@ -20,12 +20,6 @@
         android:theme="@style/Theme.BloodlineApplication"
         tools:targetApi="31">
         <activity
-            android:name=".admin.MessagesActivity"
-            android:exported="false" />
-        <activity
-            android:name=".admin.CategorySelectedItem"
-            android:exported="false" />
-        <activity
             android:name=".admin.HomeAdmin"
             android:exported="false" />
         <activity

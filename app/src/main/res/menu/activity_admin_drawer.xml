@@ -8,18 +8,7 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
             android:title="@string/menu_home" />
-        <item
-            android:id="@+id/nav_ap"
-            android:icon="@drawable/ic_list"
-            android:title="A positive"/>
-        <item
-            android:id="@+id/nav_an"
-            android:icon="@drawable/ic_list"
-            android:title="A negative"/>
-        <item
-            android:id="@+id/nav_tab"
-            android:icon="@drawable/ic_list"
-            android:title="Registration List"/>
+
 
         <item android:title="Settings">
             <menu>
@@ -27,10 +16,7 @@
                     android:id="@+id/menuLogout"
                     android:icon="@drawable/ic_logout"
                     android:title="Logout"/>
-                <item
-                    android:id="@+id/nav_changePassword"
-                    android:icon="@drawable/ic_lock"
-                    android:title="Change Password"/>
+
             </menu>
         </item>
 

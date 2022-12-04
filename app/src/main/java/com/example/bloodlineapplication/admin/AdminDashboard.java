@@ -49,20 +49,12 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
         menu_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AdminDashboard.this, MainActivity2.class);
+                Intent intent = new Intent(AdminDashboard.this, HomeAdmin.class);
                 startActivity(intent);
             }
         });
         menu_request = (ImageView) findViewById(R.id.menu_request);
         menu_request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AdminDashboard.this, ViewRequestActivity.class);
-                startActivity(intent);
-            }
-        });
-        menu_message = (ImageView) findViewById(R.id.menu_message);
-        menu_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AdminDashboard.this, ViewRequestActivity.class);
@@ -126,25 +118,13 @@ public class AdminDashboard extends AppCompatActivity implements NavigationView.
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
 
-            case R.id.nav_ap:
-                Intent intent1 = new Intent(AdminDashboard.this, CategorySelectedItem.class);
-                startActivity(intent1);
-                break;
-            case R.id.nav_an:
-                Intent intent2 = new Intent(AdminDashboard.this, CategorySelectedItem.class);
-                startActivity(intent2);
-                break;
-            case R.id.nav_changePassword:
-            Intent intent3 = new Intent(AdminDashboard.this, ChangePassword.class);
-            startActivity(intent3);
-            break;
 
             case R.id.menuLogout:
-            Intent intent4 = new Intent(AdminDashboard.this, AdminLogin.class);
+            Intent intent3 = new Intent(AdminDashboard.this, AdminLogin.class);
             Toast.makeText(AdminDashboard.this, "User has been Logout sucessfully!", Toast.LENGTH_LONG).show();
-            intent4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent3.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             Auth.signOut();
-            startActivity(intent4);
+            startActivity(intent3);
             finish();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
