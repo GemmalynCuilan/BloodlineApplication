@@ -29,9 +29,11 @@ public class BloodRequestAdapter extends FirebaseRecyclerAdapter<UserReq, BloodR
     @Override
     protected void onBindViewHolder(@NonNull PostHolder holder, int position, @NonNull UserReq model) {
         holder.bloodgroup.setText("I Need " + model.getBloodGroups());
-        holder.serialNum.setText("Requested by " + model.getSerialNumber());
+        holder.userName.setText("Requested by " + model.getName());
         holder.posted.setText("Posted on: "+model.getTime()+" , "+model.getDate());
         holder.Address.setText("From: " + model.getAddress());
+        holder.userNum.setText("Message me:" + model.getNumber());
+
     }
 
     @NonNull
@@ -43,13 +45,14 @@ public class BloodRequestAdapter extends FirebaseRecyclerAdapter<UserReq, BloodR
 
     class PostHolder extends  RecyclerView.ViewHolder{
 
-        TextView  bloodgroup, Address, serialNum, time, date, posted;
+        TextView  bloodgroup, Address, userName, time, date, posted, userNum;
 
         public PostHolder(@NonNull View itemView) {
             super(itemView);
-            serialNum = (TextView) itemView.findViewById(R.id.targetSN);
+            userName = (TextView) itemView.findViewById(R.id.targetSN);
             bloodgroup = (TextView) itemView.findViewById(R.id.targetBG);
             Address = (TextView) itemView.findViewById(R.id.reqstLocation);
+            userNum = (TextView) itemView.findViewById(R.id.messnum);
             posted = (TextView) itemView.findViewById(R.id.posted);
         }
     }

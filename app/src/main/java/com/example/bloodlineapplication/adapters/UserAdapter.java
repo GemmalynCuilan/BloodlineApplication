@@ -33,7 +33,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.myVie
         holder.email.setText(model.getEmail());
         holder.blood.setText(model.getBlood());
         holder.bloodGroups.setText(model.getBloodGroups());
-        holder.serialNum.setText(model.getSerialNum());
+
     }
 
     @NonNull
@@ -45,7 +45,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.myVie
 
     class myViewHolder extends RecyclerView.ViewHolder{
 
-     TextView fullname,age, email, address, bloodGroups, blood, serialNum;
+     TextView fullname,age, email, address, bloodGroups, blood;
 
      public myViewHolder(@NonNull View itemView) {
          super(itemView);
@@ -55,7 +55,7 @@ public class UserAdapter extends FirebaseRecyclerAdapter<User, UserAdapter.myVie
          address =(TextView) itemView.findViewById(R.id.addresstext);
          bloodGroups =(TextView) itemView.findViewById(R.id.bloodGroupstext);
          blood =(TextView) itemView.findViewById(R.id.bloodtext);
-         serialNum =(TextView) itemView.findViewById(R.id.serialNumtext);
+
      }
  }
 }

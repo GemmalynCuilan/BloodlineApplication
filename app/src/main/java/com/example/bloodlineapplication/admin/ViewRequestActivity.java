@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 
@@ -38,6 +39,8 @@ public class ViewRequestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_request);
+
+
 
         ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
         arrowBack.setOnClickListener(new View.OnClickListener() {

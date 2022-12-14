@@ -41,7 +41,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.email.setText(mData.get(position).getEmail());
         holder.blood.setText(mData.get(position).getBlood());
         holder.bloodGroups.setText(mData.get(position).getBloodGroups());
-        holder.serialNum.setText(mData.get(position).getSerialNum());
+
     }
 
     @Override
@@ -50,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView fullname,age, email, address, bloodGroups, blood, serialNum;
+        TextView fullname,age, email, address, bloodGroups, blood;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -60,7 +60,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             address =(TextView) itemView.findViewById(R.id.addresstext);
             bloodGroups =(TextView) itemView.findViewById(R.id.bloodGroupstext);
             blood =(TextView) itemView.findViewById(R.id.bloodtext);
-            serialNum =(TextView) itemView.findViewById(R.id.serialNumtext);
+
         }
     }
 }

@@ -41,7 +41,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FAFFFFFF"
-                    android:text="Requested by: 2600-001057-5"
+                    android:text="Requested by: Me"
+                    android:textColor="#020202"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/messnum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#FAFFFFFF"
+                    android:text="Message Me: "
                     android:textColor="#020202"
                     android:textSize="16sp" />
 
@@ -62,6 +70,12 @@
                     android:text="From: Loakan"
                     android:textColor="#020202"
                     android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Send message" />
             </LinearLayout>
 
         </LinearLayout>

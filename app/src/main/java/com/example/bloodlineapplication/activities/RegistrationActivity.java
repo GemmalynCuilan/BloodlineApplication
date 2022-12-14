@@ -27,7 +27,7 @@ import java.util.HashMap;
 public class RegistrationActivity extends AppCompatActivity{
 
     private Spinner  bloodGroups, blood;
-    private EditText fullname, address, email, password, age, snumber;
+    private EditText fullname, address, email, password, age;
     private Button signUpButton;
     private FirebaseAuth mAuth;
     private ProgressDialog loadBar;
@@ -47,7 +47,7 @@ public class RegistrationActivity extends AppCompatActivity{
         password = (EditText) findViewById(R.id.password);
         bloodGroups = (Spinner) findViewById(R.id.bloodGroups);
         blood = (Spinner) findViewById(R.id.blood);
-        snumber = (EditText) findViewById(R.id.snumber);
+
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -80,14 +80,11 @@ public class RegistrationActivity extends AppCompatActivity{
         String pass = password.getText().toString().trim();
         String bgroup = bloodGroups.getSelectedItem().toString().trim();
         String bloodDr = blood.getSelectedItem().toString().trim();
-        String serialNum = snumber.getText().toString().trim();
+
 
         if (emailAdd.isEmpty()) {
             email.setError("Enter correct E-mail!");
             Toast.makeText(this, "Please input correct E-Mail...", Toast.LENGTH_SHORT).show();
-        } else if (serialNum.isEmpty()) {
-            snumber.setError("Enter Serial number!");
-            Toast.makeText(this, "Please input your serial number...", Toast.LENGTH_SHORT).show();
         } else if (pass.isEmpty()) {
             password.setError("Enter Password!");
             Toast.makeText(this, "Please input your password...", Toast.LENGTH_SHORT).show();
@@ -101,12 +98,12 @@ public class RegistrationActivity extends AppCompatActivity{
             fullname.setError("Enter your full name");
             Toast.makeText(this, "Please write your full name...", Toast.LENGTH_SHORT).show();
         } else {
-            register(emailAdd, pass, userAge, userAddress, name, bgroup, bloodDr, serialNum);
+            register(emailAdd, pass, userAge, userAddress, name, bgroup, bloodDr);
         }
 
     }
 
-    private void register(String emailAdd, String pass, String userAge, String userAddress, String name, String bgroup, String bloodDr, String serialNum) {
+    private void register(String emailAdd, String pass, String userAge, String userAddress, String name, String bgroup, String bloodDr) {
         loadBar.setTitle("Creating Account");
         loadBar.setMessage("Please wait!");
         loadBar.setCanceledOnTouchOutside(false);
@@ -129,7 +126,6 @@ public class RegistrationActivity extends AppCompatActivity{
                     hashMap.put("fullname", name);
                     hashMap.put("bloodGroups", bgroup);
                     hashMap.put("blood", bloodDr);
-                    hashMap.put("serialNum", serialNum);
                     hashMap.put("profileImage", "default");
                     hashMap.put("status", "user");
                     databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -32,8 +32,8 @@ public class PostActivity extends AppCompatActivity {
 
     private ImageButton arrowBack;
     private Spinner bloodGroups;
-    private EditText serialnumber, address;
-    private TextView snum, add, bgrp;
+    private EditText name, address, number;
+    private TextView sname, add, bgrp, snum;
     private Button postbtn;
     private String saveCurrentDate, saveCurrentTime;
 
@@ -54,9 +54,10 @@ public class PostActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
 
 
-        snum = (TextView) findViewById(R.id.snum);
+        sname = (TextView) findViewById(R.id.name);
         add = (TextView) findViewById(R.id.add);
         bgrp = (TextView) findViewById(R.id.bgrp);
+        snum = (TextView) findViewById(R.id.snum);
 
         ImageButton arrowBack = (ImageButton) findViewById(R.id.arrowback_profile);
         arrowBack.setOnClickListener(new View.OnClickListener() {
@@ -77,8 +78,9 @@ public class PostActivity extends AppCompatActivity {
         saveCurrentTime = currentTime.format(calendar.getTime());
 
         bloodGroups = (Spinner) findViewById(R.id.bloodGroups);
-        serialnumber = (EditText) findViewById(R.id.serialNum);
+        name = (EditText) findViewById(R.id.name);
         address = (EditText) findViewById(R.id.address);
+        number = (EditText) findViewById(R.id.number);
 
         postbtn = (Button) findViewById(R.id.postbtn);
         postbtn.setOnClickListener(new View.OnClickListener() {
@@ -90,32 +92,37 @@ public class PostActivity extends AppCompatActivity {
     }
 
     private void addlist() {
-        String snumber = serialnumber.getText().toString().trim();
+        String userName = name.getText().toString().trim();
         String userAddress = address.getText().toString().trim();
+        String userNum = number.getText().toString().trim();
         String userBgrp = bloodGroups.getSelectedItem().toString().trim();
 
-        if (snumber.isEmpty()) {
-            serialnumber.setError("Enter correct Serial number!");
-            Toast.makeText(this, "Please input correct serial number...", Toast.LENGTH_SHORT).show();
+        if (userName.isEmpty()) {
+            name.setError("Enter name!");
+            Toast.makeText(this, "Please input name...", Toast.LENGTH_SHORT).show();
         } else if (userAddress.isEmpty()) {
             address.setError("Enter address!");
             Toast.makeText(this, "Please input your address...", Toast.LENGTH_SHORT).show();
+        } else if (userNum.isEmpty()) {
+            number.setError("Enter number!");
+            Toast.makeText(this, "Please input your number...", Toast.LENGTH_SHORT).show();
         } else {
-            register(snumber, userAddress, userBgrp);
+            register(userName, userAddress, userBgrp, userNum);
         }
 
     }
 
-    private void register(String snumber, String userAddress, String userBgrp) {
+    private void register(String userName, String userAddress, String userBgrp, String userNum) {
 
         HashMap<String, String> hashMap = new HashMap<>();
-        hashMap.put("serialNumber", snumber);
+        hashMap.put("name", userName);
         hashMap.put("Address", userAddress);
         hashMap.put("bloodGroups", userBgrp);
+        hashMap.put("number", userNum);
         hashMap.put("date", saveCurrentDate);
         hashMap.put("time", saveCurrentTime);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("posts").child(snumber);
+        databaseReference = FirebaseDatabase.getInstance().getReference("posts").child(userName);
         databaseReference.setValue(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
